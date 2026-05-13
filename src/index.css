@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E2C06E;
+  --black: #0C0C0C;
+  --black-2: #111111;
+  --black-3: #171717;
+  --black-4: #1E1E1E;
+  --cream: #F0EAD6;
+  --muted: #8A7E6A;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black) !important;
+  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+.bg-brand-black { background-color: var(--black); }
+.bg-brand-black-2 { background-color: var(--black-2); }
+.bg-brand-black-3 { background-color: var(--black-3); }
+.bg-brand-black-4 { background-color: var(--black-4); }
+.bg-brand-gold { background-color: var(--gold); }
+.text-brand-gold { color: var(--gold); }
+.text-brand-cream { color: var(--cream); }
+.text-brand-muted { color: var(--muted); }
+.border-brand-gold { border-color: var(--gold); }
+.font-brand-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker { animation: ticker 28s linear infinite; }
+
+/* Prevents iOS auto-zoom on inputs */
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Makes the Checkout container take full width on small screens */
+  .checkout-container {
+    padding: 10px;
+  }
+}
