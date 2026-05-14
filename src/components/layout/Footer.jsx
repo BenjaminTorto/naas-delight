@@ -57,8 +57,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:agyarkovictoria9@gmail.com" className="text-sm text-muted hover:text-gold transition-colors duration-200">
-                  agyarkovictoria9@gmail.com
+                <a href="mailto:Naasdelights@gmail.com" className="text-sm text-muted hover:text-gold transition-colors duration-200">
+                  Naasdelights@gmail.com
                 </a>
               </li>
               <li className="text-sm text-muted leading-relaxed">
