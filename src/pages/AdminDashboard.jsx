@@ -51,6 +51,15 @@ const AdminDashboard = () => {
     if (!error) { setEditingId(null); fetchData(); }
   };
 
+  // STEP 3: NEW FUNCTION TO TOGGLE AVAILABILITY
+  const toggleAvailability = async (id, currentStatus) => {
+    const { error } = await supabase
+      .from('menu')
+      .update({ is_available: !currentStatus })
+      .eq('id', id);
+    if (!error) fetchData();
+  };
+
   if (loading) return <div style={{ color: '#C9A84C', textAlign: 'center', paddingTop: '200px' }}>Loading Kitchen...</div>;
 
   return (
@@ -68,7 +77,7 @@ const AdminDashboard = () => {
           </div>
         </header>
 
-        {/* Live Orders */}
+        {/* Live Orders Section */}
         <section style={{ marginBottom: '6rem' }}>
           <h2 style={{ color: '#C9A84C', marginBottom: '2rem' }}>Active Orders</h2>
           <div style={{ display: 'grid', gap: '1.5rem' }}>
@@ -90,23 +99,50 @@ const AdminDashboard = () => {
           </div>
         </section>
 
-        {/* Menu Management */}
+        {/* Menu Management Section */}
         <section style={{ borderTop: '1px solid #222', paddingTop: '4rem' }}>
-          <h2 style={{ color: '#C9A84C', marginBottom: '2rem' }}>Menu Price Editor</h2>
+          <h2 style={{ color: '#C9A84C', marginBottom: '2rem' }}>Kitchen Availability & Prices</h2>
           <div style={{ display: 'grid', gap: '1rem' }}>
             {menuItems.map(item => (
-              <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', background: '#111', padding: '1.2rem', border: '1px solid #222' }}>
-                <span>{item.name}</span>
+              <div key={item.id} style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center',
+                background: '#111', 
+                padding: '1.2rem', 
+                border: item.is_available === false ? '1px solid #331111' : '1px solid #222' 
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                  {/* Availability Toggle Switch */}
+                  <button 
+                    onClick={() => toggleAvailability(item.id, item.is_available)}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      fontSize: '0.6rem',
+                      fontWeight: '800',
+                      letterSpacing: '0.1em',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      backgroundColor: item.is_available === false ? '#333' : '#C9A84C',
+                      color: item.is_available === false ? '#888' : '#0C0C0C'
+                    }}
+                  >
+                    {item.is_available === false ? 'SOLD OUT' : 'LIVE'}
+                  </button>
+                  <span style={{ color: item.is_available === false ? '#555' : '#F0EAD6' }}>{item.name}</span>
+                </div>
+
                 <div>
                   {editingId === item.id ? (
                     <>
-                      <input type="number" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} style={{ width: '60px', background: '#222', color: '#fff', border: '1px solid #C9A84C' }} />
+                      <input type="number" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} style={{ width: '60px', background: '#222', color: '#fff', border: '1px solid #C9A84C', padding: '4px' }} />
                       <button onClick={() => updatePrice(item.id)} style={{ color: '#22C55E', background: 'none', border: 'none', cursor: 'pointer', marginLeft: '10px' }}>SAVE</button>
                     </>
                   ) : (
                     <>
-                      <span style={{ marginRight: '15px' }}>£{Number(item.price).toFixed(2)}</span>
-                      <button onClick={() => { setEditingId(item.id); setNewPrice(item.price); }} style={{ color: '#555', background: 'none', border: '1px solid #333', cursor: 'pointer', padding: '2px 8px' }}>EDIT</button>
+                      <span style={{ marginRight: '15px', color: item.is_available === false ? '#555' : '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
+                      <button onClick={() => { setEditingId(item.id); setNewPrice(item.price); }} style={{ color: '#555', background: 'none', border: '1px solid #333', cursor: 'pointer', padding: '4px 12px', fontSize: '0.7rem' }}>EDIT PRICE</button>
                     </>
                   )}
                 </div>
