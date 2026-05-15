@@ -61,7 +61,7 @@ export const menuItems = [
     id: 4,
     name: 'Check Check Fried Rice',
     category: 'Rice Dishes',
-    description: 'Deliciously seasoned fried rice served with a generous mix of chicken, meat and egg for a satisfying feast.',
+    description: 'Deliciously seasoned fried rice served with a generous mix of chicken and egg for a satisfying feast.',
     price: 13.00,
     image: checkCheckRice,
   },
