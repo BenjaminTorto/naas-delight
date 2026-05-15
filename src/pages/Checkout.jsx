@@ -3,7 +3,12 @@ import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
-const KITCHEN_ADDRESS = "25 Grasmere Road, London SE25 4RF";
+// 1. PUBLIC display (No house number)
+const PUBLIC_LOCATION = "Grasmere Road, London SE25 (Full address sent on WhatsApp)";
+
+// 2. PRIVATE location (Full address for the message)
+const PRIVATE_LOCATION = process.env.REACT_APP_KITCHEN_ADDRESS || "25 Grasmere Road, London SE25 4RF";
+
 const WHATSAPP_NUMBER = "447833698693";
 
 const Checkout = () => {
@@ -46,7 +51,8 @@ const Checkout = () => {
     if (serviceMethod === 'delivery') {
       text += `*Address:* ${formData.address}, ${formData.postcode}\n`;
     } else {
-      text += `*Pickup from:* ${KITCHEN_ADDRESS}\n`;
+      // Reveal the REAL address only in the WhatsApp message
+      text += `*Pickup from:* ${PRIVATE_LOCATION}\n`;
     }
 
     if (formData.instructions) {
@@ -67,15 +73,11 @@ const Checkout = () => {
     if (cart.length === 0) return;
     setIsSubmitting(true);
 
-    // 1. Generate a temporary ID and the WhatsApp link immediately
     const tempId = Math.random().toString(36).slice(2, 8).toUpperCase();
     const whatsappUrl = generateWhatsAppUrl(tempId);
 
-    // 2. TRIGGER WHATSAPP IMMEDIATELY (Before the await)
-    // This bypasses browser popup blockers which hate waiting for database calls
     window.open(whatsappUrl, '_blank');
 
-    // 3. Silent background check to Supabase
     try {
       const { data, error } = await supabase.from('orders').insert([{
         customer_name: formData.name,
@@ -88,7 +90,6 @@ const Checkout = () => {
         status: 'pending',
       }]).select();
 
-      // Use the real DB ID if available, otherwise keep tempId
       const finalId = (!error && data?.[0]?.id) ? data[0].id.toString().slice(0, 6) : tempId;
       
       navigate(`/order-confirmation/${finalId}`);
@@ -185,8 +186,8 @@ const Checkout = () => {
 
           {serviceMethod === 'pickup' && (
             <div style={{ padding: '1rem', backgroundColor: '#1a1a1a', borderRadius: '8px', border: '1px dashed #C9A84C', fontSize: '0.85rem' }}>
-              <p style={{ color: '#C9A84C', marginBottom: '0.4rem' }}>Collection Address:</p>
-              <p style={{ color: '#8A7E6A' }}>{KITCHEN_ADDRESS}</p>
+              <p style={{ color: '#C9A84C', marginBottom: '0.4rem' }}>Collection Area:</p>
+              <p style={{ color: '#8A7E6A' }}>{PUBLIC_LOCATION}</p>
             </div>
           )}
 
