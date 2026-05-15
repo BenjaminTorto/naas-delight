@@ -110,7 +110,7 @@ const Home = () => {
           </div>
 
           {/* Featured Hero */}
-          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', marginBottom: '1px'}}>
+          <div style={{gridTemplateColumns: '1fr 1fr', display: 'grid', marginBottom: '1px'}}>
             <div style={{backgroundColor: '#171717', aspectRatio: '16/10', position: 'relative', overflow: 'hidden'}}>
               <img src={menuItems[0].image} alt={menuItems[0].name} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
             </div>
@@ -119,7 +119,7 @@ const Home = () => {
               <h3 style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '2.2rem', fontWeight: 300, color: '#F0EAD6', lineHeight: 1.1, marginBottom: '0.75rem'}}>Signature<br/>Jollof Rice</h3>
               <p style={{fontSize: '0.83rem', color: '#8A7E6A', lineHeight: 1.8, marginBottom: '1.5rem'}}>Slow-cooked in a rich tomato base infused with scotch bonnet peppers and a secret blend of West African spices.</p>
               <p style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', color: '#C9A84C', fontWeight: 300, marginBottom: '1.5rem'}}>£12.00</p>
-              <button onClick={() => openModal(menuItems[0])} style={{backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '0.75rem 1.8rem', fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, border: 'none', cursor: 'pointer', width: 'fit-content'}}>Add to Order</button>
+              <button onClick={() => openModal(menuItems[0])} style={{backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '0.75rem 1.8rem', fontSize: '0.70rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, border: 'none', cursor: 'pointer', width: 'fit-content'}}>Add to Order</button>
             </div>
           </div>
 
@@ -150,66 +150,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section style={{backgroundColor: '#0C0C0C', padding: '6rem 0'}}>
-        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 3rem'}}>
-          <div style={{display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.75rem'}}>
-            <div style={{width: '28px', height: '1px', backgroundColor: '#C9A84C'}} />
-            <span style={{fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C'}}>The Process</span>
-          </div>
-          <h2 style={{fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3.5vw, 3.2rem)', fontWeight: 300, color: '#F0EAD6', marginBottom: '3.5rem'}}>
-            Simple as <em style={{fontStyle: 'italic', color: '#C9A84C'}}>it should be</em>
-          </h2>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', border: '1px solid rgba(201,168,76,0.12)'}}>
-            {[
-              {num: '01', icon: '🍽️', title: 'Browse the Menu', desc: 'Explore 17+ authentic Ghanaian dishes, sorted by category.'},
-              {num: '02', icon: '✏️', title: 'Customise & Order', desc: 'Pick your protein, spice level and extras. No account needed.'},
-              {num: '03', icon: '📲', title: 'Track Your Order', desc: 'Get real-time updates and a WhatsApp alert when ready.'},
-              {num: '04', icon: '💛', title: 'Pick Up & Pay Cash', desc: 'Collect your fresh order and pay cash on pickup. Done.'},
-            ].map((step, i) => (
-              <div key={step.num} style={{padding: '2.5rem 2rem', borderRight: i < 3 ? '1px solid rgba(201,168,76,0.1)' : 'none'}}>
-                <p style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '4rem', fontWeight: 300, color: 'rgba(201,168,76,0.1)', lineHeight: 1, marginBottom: '1.5rem'}}>{step.num}</p>
-                <span style={{fontSize: '1.5rem', marginBottom: '1rem', display: 'block'}}>{step.icon}</span>
-                <p style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '1.2rem', color: '#F0EAD6', marginBottom: '0.6rem'}}>{step.title}</p>
-                <p style={{fontSize: '0.78rem', color: '#8A7E6A', lineHeight: 1.8}}>{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* QUOTE BANNER */}
-      <div style={{backgroundColor: '#111111', borderTop: '1px solid rgba(201,168,76,0.1)', borderBottom: '1px solid rgba(201,168,76,0.1)', padding: '5rem 3rem', textAlign: 'center'}}>
-        <p style={{fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.6rem, 3vw, 2.8rem)', fontWeight: 300, fontStyle: 'italic', color: '#F0EAD6', lineHeight: 1.3, maxWidth: '800px', margin: '0 auto 1.5rem'}}>
-          "Every dish tells a story — rooted in family tradition, West African spices, and the warmth of Ghanaian hospitality."
-        </p>
-        <div style={{width: '40px', height: '1px', backgroundColor: '#C9A84C', margin: '1.2rem auto'}} />
-        <span style={{fontSize: '0.68rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C9A84C'}}>Victoria, Founder — Naa's Delight</span>
-      </div>
-
-      {/* TESTIMONIALS */}
-      <section style={{backgroundColor: '#0C0C0C', padding: '6rem 0'}}>
-        <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 3rem'}}>
-          <div style={{display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.75rem'}}>
-            <div style={{width: '28px', height: '1px', backgroundColor: '#C9A84C'}} />
-            <span style={{fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C'}}>What People Say</span>
-          </div>
-          <h2 style={{fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3.5vw, 3.2rem)', fontWeight: 300, color: '#F0EAD6', marginBottom: '3rem'}}>
-            Loved by <em style={{fontStyle: 'italic', color: '#C9A84C'}}>our customers</em>
-          </h2>
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', backgroundColor: 'rgba(201,168,76,0.06)'}}>
-            {testimonials.map(t => (
-              <div key={t.id} style={{backgroundColor: '#111111', padding: '2.5rem 2rem'}}>
-                <p style={{color: '#C9A84C', fontSize: '0.75rem', letterSpacing: '0.2em', marginBottom: '1.2rem'}}>★★★★★</p>
-                <p style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '1.05rem', fontStyle: 'italic', color: '#F0EAD6', lineHeight: 1.7, marginBottom: '1.5rem', fontWeight: 300}}>"{t.text}"</p>
-                <span style={{fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8A7E6A'}}>— {t.author}, {t.location}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <OrderModal isOpen={modalOpen} onClose={() => setModalOpen(false)} item={selectedItem} />
     </div>
   )
 }
