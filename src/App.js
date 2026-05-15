@@ -1,9 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import { CartProvider } from './context/CartContext'
 import CartDrawer from './components/CartDrawer'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/layout/ScrollToTop'
+import AnimatedPage from './components/layout/AnimatedPage'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import About from './pages/About'
@@ -14,26 +16,35 @@ import TrackOrder from './pages/TrackOrder'
 import OrderConfirmation from './pages/OrderConfirmation'
 import AdminDashboard from './pages/AdminDashboard'
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
+        <Route path="/menu" element={<AnimatedPage><Menu /></AnimatedPage>} />
+        <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
+        <Route path="/team" element={<AnimatedPage><Team /></AnimatedPage>} />
+        <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+        <Route path="/checkout" element={<AnimatedPage><Checkout /></AnimatedPage>} />
+        <Route path="/track" element={<AnimatedPage><TrackOrder /></AnimatedPage>} />
+        <Route path="/order-confirmation/:orderId" element={<AnimatedPage><OrderConfirmation /></AnimatedPage>} />
+        <Route path="/admin" element={<AnimatedPage><AdminDashboard /></AnimatedPage>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <CartProvider>
       <Router>
         <ScrollToTop />
         <Navbar />
-        {/* The CartDrawer sits here so it can overlay any page when opened */}
         <CartDrawer /> 
         
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/track" element={<TrackOrder />} />
-          <Route path="/order-confirmation/:orderId" element={<OrderConfirmation />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-        </Routes>
+        <AnimatedRoutes />
         
         <Footer />
       </Router>
