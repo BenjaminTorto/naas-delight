@@ -16,7 +16,7 @@ import kelewele from '../assets/food/kelewele.png';
 import beansPlantain from '../assets/food/beans-plantain.png';
 import sobolo from '../assets/food/sobolo.png';
 import friedTilapia from '../assets/food/fried-tilapia.jpg';
-import friedChicken from '../assets/food/fried-chicken.jpg..jpg';
+import friedChicken from '../assets/food/fried-chicken.jpg';
 
 const assetMap = {
   'jollof-rice.jpg': jollofRice,
@@ -32,7 +32,7 @@ const assetMap = {
   'beans-plantain.png': beansPlantain,
   'sobolo.png': sobolo,
   'fried-tilapia.jpg': friedTilapia,
-  'fried-chicken.jpg..jpg': friedChicken
+  'fried-chicken.jpg': friedChicken
 };
 
 const CartDrawer = () => {
