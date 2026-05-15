@@ -11,7 +11,7 @@ import kelewele from '../assets/food/kelewele.png'
 import beansPlantain from '../assets/food/beans-plantain.png'
 import sobolo from '../assets/food/sobolo.png'
 import friedTilapia from '../assets/food/fried-tilapia.jpg'
-import friedChicken from '../assets/food/fried-chicken.jpg..jpg'
+import friedChicken from '../assets/food/fried-chicken.jpg'
 
 export const menuItems = [
   {
@@ -61,7 +61,7 @@ export const menuItems = [
     id: 4,
     name: 'Check Check Fried Rice',
     category: 'Rice Dishes',
-    description: 'Half smoky jollof, half fragrant fried rice on one plate. Two bold flavours, zero regrets.',
+    description: 'Deliciously seasoned fried rice served with a generous mix of chicken, meat and egg for a satisfying feast.',
     price: 13.00,
     image: checkCheckRice,
   },

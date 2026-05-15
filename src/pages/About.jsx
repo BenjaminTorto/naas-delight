@@ -14,10 +14,10 @@ const About = () => {
             </h1>
             <div style={{ color: '#8A7E6A', lineHeight: 1.8, fontSize: '1.1rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <p>
-                Naa's Delight is a UK-based food brand bringing the warmth of West Africa to your table one dish at a time. [cite: 1] Founded with a powerful mission to share the authentic flavours of Ghana with the world, our brand is more than just food—it’s a cultural experience. [cite: 6, 7]
+                Naa's Delight is a UK-based food brand bringing the warmth of West Africa to your table one dish at a time. Founded with a powerful mission to share the authentic flavours of Ghana with the world, our brand is more than just food. it’s a cultural experience. 
               </p>
               <p>
-                Based in the UK, we craft every dish using traditional Ghanaian recipes passed down through generations. [cite: 8] We use authentic spices sourced directly from Ghana, ensuring each bite is packed with bold, vibrant, and unforgettable flavours. [cite: 8, 12]
+                Based in the UK, we craft every dish using traditional Ghanaian recipes passed down through generations. We use authentic spices sourced directly from Ghana, ensuring each bite is packed with bold, vibrant, and unforgettable flavours. 
               </p>
             </div>
           </div>
