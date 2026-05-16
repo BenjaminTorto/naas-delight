@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   const contactInfo = [
-    { label: 'Location', value: '25 Grasmere Road, London SE25 4RF', icon: '📍' },
+    { label: 'Location', value:  ' London SE25 4RF', icon: '📍' },
     { label: 'Opening Hours', value: 'Tue – Sun: 12PM – 9PM', icon: '🕒' },
     { label: 'Contact', value: '+44 7833 698693', icon: '📞' }
   ];
