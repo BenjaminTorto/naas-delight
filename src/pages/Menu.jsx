@@ -123,7 +123,7 @@ const Menu = () => {
                 >
                   <div style={{width: '100%', aspectRatio: '1/1', overflow: 'hidden', position: 'relative'}}>
                     <img
-                      src={assetMap[item.image_url] || item.image_url}
+                      src={item.image || assetMap[item.image_url] || item.image_url}
                       alt={item.name}
                       style={{
                         width: '100%', height: '100%', objectFit: 'cover', 
