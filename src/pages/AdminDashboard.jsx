@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 const AdminDashboard = () => {
@@ -8,6 +9,7 @@ const AdminDashboard = () => {
   const [stats, setStats] = useState({ totalOrders: 0, totalRevenue: 0 });
   const [editingId, setEditingId] = useState(null);
   const [newPrice, setNewPrice] = useState('');
+  const navigate = useNavigate();
 
   const playSound = () => {
     const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
@@ -33,13 +35,29 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate('/admin-login');
+      } else {
+        fetchData();
+      }
+    };
+
+    checkUser();
+
     const sub = supabase.channel('any').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'orders' }, () => {
       playSound();
       fetchData();
     }).subscribe();
+
     return () => supabase.removeChannel(sub);
-  }, []);
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/admin-login');
+  };
 
   const updateStatus = async (id, status) => {
     const { error } = await supabase.from('orders').update({ status }).eq('id', id);
@@ -51,105 +69,135 @@ const AdminDashboard = () => {
     if (!error) { setEditingId(null); fetchData(); }
   };
 
-  // STEP 3: NEW FUNCTION TO TOGGLE AVAILABILITY
   const toggleAvailability = async (id, currentStatus) => {
-    const { error } = await supabase
-      .from('menu')
-      .update({ is_available: !currentStatus })
-      .eq('id', id);
+    const { error } = await supabase.from('menu').update({ is_available: !currentStatus }).eq('id', id);
     if (!error) fetchData();
   };
 
-  if (loading) return <div style={{ color: '#C9A84C', textAlign: 'center', paddingTop: '200px' }}>Loading Kitchen...</div>;
+  if (loading) {
+    return (
+      <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: '#C9A84C', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem' }}>Verifying Portal Access...</p>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '120px', paddingBottom: '100px' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', color: '#F0EAD6', padding: '120px 2rem 4rem' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
-        <header style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4rem', borderBottom: '1px solid #222', paddingBottom: '2rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(201,168,76,0.15)', paddingBottom: '1.5rem', marginBottom: '3rem' }}>
           <div>
-            <h1 style={{ fontFamily: 'serif', fontSize: '3rem' }}>Management</h1>
-            <p style={{ color: '#C9A84C', letterSpacing: '0.2em', fontSize: '0.7rem' }}>LIVE FEED</p>
+            <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>Management Dashboard</span>
+            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', fontWeight: 300, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <p style={{ fontSize: '1.5rem', margin: 0 }}>£{stats.totalRevenue.toFixed(2)}</p>
-            <p style={{ color: '#8A7E6A', fontSize: '0.7rem' }}>REVENUE</p>
-          </div>
-        </header>
+          <button 
+            onClick={handleLogout}
+            style={{ backgroundColor: 'transparent', border: '1px solid rgba(255, 107, 107, 0.4)', color: '#ff6b6b', padding: '0.6rem 1.4rem', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer', fontWeight: 600 }}
+          >
+            Sign Out
+          </button>
+        </div>
 
-        {/* Live Orders Section */}
-        <section style={{ marginBottom: '6rem' }}>
-          <h2 style={{ color: '#C9A84C', marginBottom: '2rem' }}>Active Orders</h2>
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {orders.map(o => (
-              <div key={o.id} style={{ background: '#111', padding: '2rem', border: '1px solid #222' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <h3>{o.customer_name}</h3>
-                  <span style={{ color: '#C9A84C' }}>£{o.total_price?.toFixed(2)}</span>
-                </div>
-                <div style={{ margin: '1rem 0', fontSize: '0.9rem', color: '#8A7E6A' }}>
-                  {o.items?.map((item, i) => <div key={i}>{item.quantity}x {item.name}</div>)}
-                </div>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  <button onClick={() => updateStatus(o.id, 'cooking')} style={{ flex: 1, padding: '0.8rem', background: 'none', border: '1px solid #3B82F6', color: '#3B82F6', cursor: 'pointer' }}>START COOKING</button>
-                  <button onClick={() => updateStatus(o.id, 'completed')} style={{ flex: 1, padding: '0.8rem', background: '#C9A84C', border: 'none', color: '#0C0C0C', fontWeight: 'bold', cursor: 'pointer' }}>COMPLETE</button>
-                </div>
-              </div>
-            ))}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '4rem' }}>
+          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Completed Orders</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 300 }}>{stats.totalOrders}</p>
           </div>
-        </section>
+          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Gross Pipeline Revenue</p>
+            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 300 }}>£{stats.totalRevenue.toFixed(2)}</p>
+          </div>
+        </div>
 
-        {/* Menu Management Section */}
-        <section style={{ borderTop: '1px solid #222', paddingTop: '4rem' }}>
-          <h2 style={{ color: '#C9A84C', marginBottom: '2rem' }}>Kitchen Availability & Prices</h2>
-          <div style={{ display: 'grid', gap: '1rem' }}>
+        <div style={{ marginBottom: '4rem' }}>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', fontWeight: 300, marginBottom: '1.5rem', color: '#C9A84C' }}>Active Inbound Orders</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {orders.length === 0 ? (
+              <p style={{ color: '#8A7E6A', fontSize: '0.85rem', fontStyle: 'italic' }}>Waiting for fresh incoming orders...</p>
+            ) : (
+              orders.map(order => (
+                <div key={order.id} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{order.id}</span>
+                      <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(order.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    </div>
+                    <p style={{ fontSize: '0.85rem', color: '#C9A84C', marginBottom: '0.25rem' }}>{order.items_summary}</p>
+                    <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {order.customer_name} ({order.customer_phone})</p>
+                  </div>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(order.total_price).toFixed(2)}</span>
+                    <select 
+                      value={order.status || 'Pending'} 
+                      onChange={(e) => updateStatus(order.id, e.target.value)}
+                      style={{ backgroundColor: '#171717', color: '#F0EAD6', border: '1px solid rgba(201,168,76,0.2)', padding: '0.5rem 1rem', fontSize: '0.75rem', outline: 'none', cursor: 'pointer' }}
+                    >
+                      <option value="Pending">⏱ Pending</option>
+                      <option value="Preparing">🍳 Preparing</option>
+                      <option value="Ready">✅ Ready for Pickup</option>
+                      <option value="Completed">📦 Completed</option>
+                      <option value="Cancelled">❌ Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', fontWeight: 300, marginBottom: '1.5rem', color: '#C9A84C' }}>Live Menu Inventory Control</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {menuItems.map(item => (
-              <div key={item.id} style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center',
-                background: '#111', 
-                padding: '1.2rem', 
-                border: item.is_available === false ? '1px solid #331111' : '1px solid #222' 
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                  {/* Availability Toggle Switch */}
+              <div key={item.id} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.05)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1rem', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, color: '#F0EAD6' }}>{item.name}</h3>
+                    <span style={{ fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>{item.category}</span>
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(201,168,76,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div>
+                    {editingId === item.id ? (
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <input 
+                          type="number" 
+                          step="0.01"
+                          value={newPrice} 
+                          onChange={(e) => setNewPrice(e.target.value)}
+                          style={{ width: '65px', backgroundColor: '#171717', border: '1px solid #C9A84C', padding: '0.3rem', color: '#F0EAD6', fontSize: '0.8rem' }}
+                        />
+                        <button onClick={() => updatePrice(item.id)} style={{ backgroundColor: '#C9A84C', border: 'none', color: '#0C0C0C', fontSize: '0.65rem', padding: '0 0.5rem', cursor: 'pointer', fontWeight: 600 }}>Save</button>
+                        <button onClick={() => setEditingId(null)} style={{ backgroundColor: 'transparent', border: 'none', color: '#8A7E6A', fontSize: '0.65rem', cursor: 'pointer' }}>X</button>
+                      </div>
+                    ) : (
+                      <div style={{ cursor: 'pointer' }} onClick={() => { setEditingId(item.id); setNewPrice(item.price); }}>
+                        <span style={{ fontSize: '0.85rem', color: '#8A7E6A' }}>Price: </span>
+                        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)} 📝</span>
+                      </div>
+                    )}
+                  </div>
+
                   <button 
                     onClick={() => toggleAvailability(item.id, item.is_available)}
-                    style={{
-                      padding: '0.5rem 1rem',
-                      fontSize: '0.6rem',
-                      fontWeight: '800',
-                      letterSpacing: '0.1em',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      backgroundColor: item.is_available === false ? '#333' : '#C9A84C',
-                      color: item.is_available === false ? '#888' : '#0C0C0C'
+                    style={{ 
+                      backgroundColor: item.is_available !== false ? 'rgba(74, 222, 128, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                      border: item.is_available !== false ? '1px solid #4ade80' : '1px solid #ef4444',
+                      color: item.is_available !== false ? '#4ade80' : '#ef4444',
+                      fontSize: '0.62rem', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '0.4rem 0.8rem', cursor: 'pointer', fontWeight: 600
                     }}
                   >
-                    {item.is_available === false ? 'SOLD OUT' : 'LIVE'}
+                    {item.is_available !== false ? '● In Stock' : '○ Sold Out'}
                   </button>
-                  <span style={{ color: item.is_available === false ? '#555' : '#F0EAD6' }}>{item.name}</span>
-                </div>
-
-                <div>
-                  {editingId === item.id ? (
-                    <>
-                      <input type="number" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} style={{ width: '60px', background: '#222', color: '#fff', border: '1px solid #C9A84C', padding: '4px' }} />
-                      <button onClick={() => updatePrice(item.id)} style={{ color: '#22C55E', background: 'none', border: 'none', cursor: 'pointer', marginLeft: '10px' }}>SAVE</button>
-                    </>
-                  ) : (
-                    <>
-                      <span style={{ marginRight: '15px', color: item.is_available === false ? '#555' : '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
-                      <button onClick={() => { setEditingId(item.id); setNewPrice(item.price); }} style={{ color: '#555', background: 'none', border: '1px solid #333', cursor: 'pointer', padding: '4px 12px', fontSize: '0.7rem' }}>EDIT PRICE</button>
-                    </>
-                  )}
                 </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+
       </div>
     </div>
   );

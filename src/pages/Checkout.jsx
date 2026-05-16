@@ -7,7 +7,7 @@ import { supabase } from '../lib/supabase';
 const PUBLIC_LOCATION = "Grasmere Road, London SE25 (Full address sent on WhatsApp)";
 
 // 2. PRIVATE location (Full address for the message)
-const PRIVATE_LOCATION = process.env.REACT_APP_KITCHEN_ADDRESS || "25 Grasmere Road, London SE25 4RF";
+const PRIVATE_LOCATION = import.meta.env.VITE_KITCHEN_ADDRESS || "25 Grasmere Road, London SE25 4RF";
 
 const WHATSAPP_NUMBER = "447833698693";
 
