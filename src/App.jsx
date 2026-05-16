@@ -18,7 +18,7 @@ import Checkout from './pages/Checkout';
 import TrackOrder from './pages/TrackOrder';
 import OrderConfirmation from './pages/OrderConfirmation';
 import AdminDashboard from './pages/AdminDashboard';
-import AdminLogin from './pages/AdminPortalLogin';
+import AdminLogin from './pages/portal-login'; // Fixed to match your actual filename!
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -36,7 +36,7 @@ function AnimatedRoutes() {
         <Route path="/order-confirmation/:orderId" element={<AnimatedPage><OrderConfirmation /></AnimatedPage>} />
         <Route path="/admin-login" element={<AnimatedPage><AdminLogin /></AnimatedPage>} />
         
-        {/* Your Exact Protected Route Setup */}
+        {/* Secured Admin Route Dashboard */}
         <Route path="/admin" element={
           <ProtectedRoute>
             <AnimatedPage>
