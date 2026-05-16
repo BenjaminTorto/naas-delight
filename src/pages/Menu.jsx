@@ -5,33 +5,33 @@ import { supabase } from '../lib/supabase'
 
 // Asset imports
 import jollofRice from '../assets/food/jollof-rice.jpg'
-import assortedJollof from '../assets/food/assorted-jollof.png'
+import assortedJollof from '../assets/food/assorted-jollof.jpg'
 import assortedFriedRice from '../assets/food/assorted-fried-rice.jpg'
 import checkCheckRice from '../assets/food/check-check-rice.jpg'
 import waakye from '../assets/food/waakye.jpg'
 import riceTilapia from '../assets/food/rice-tilapia.jpg'
-import yamFish from '../assets/food/yam-fish.png'
-import friesChicken from '../assets/food/fries-chicken.png'
+import yamFish from '../assets/food/yam-fish.jpg'
+import friesChicken from '../assets/food/fries-chicken.jpg'
 import chickenWings from '../assets/food/chicken-wings.jpg'
-import kelewele from '../assets/food/kelewele.png'
-import beansPlantain from '../assets/food/beans-plantain.png'
-import sobolo from '../assets/food/sobolo.png'
+import kelewele from '../assets/food/kelewele.jpg'
+import beansPlantain from '../assets/food/beans-plantain.jpg'
+import sobolo from '../assets/food/sobolo.jpg'
 import friedTilapia from '../assets/food/fried-tilapia.jpg'
 import friedChicken from '../assets/food/fried-chicken.jpg'
 
 const assetMap = {
   'jollof-rice.jpg': jollofRice,
-  'assorted-jollof.png': assortedJollof,
+  'assorted-jollof.jpg': assortedJollof,
   'assorted-fried-rice.jpg': assortedFriedRice,
   'check-check-rice.jpg': checkCheckRice,
   'waakye.jpg': waakye,
   'rice-tilapia.jpg': riceTilapia,
-  'yam-fish.png': yamFish,
-  'fries-chicken.png': friesChicken,
+  'yam-fish.jpg': yamFish,
+  'fries-chicken.jpg': friesChicken,
   'chicken-wings.jpg': chickenWings,
-  'kelewele.png': kelewele,
-  'beans-plantain.png': beansPlantain,
-  'sobolo.png': sobolo,
+  'kelewele.jpg': kelewele,
+  'beans-plantain.jpg': beansPlantain,
+  'sobolo.jpg': sobolo,
   'fried-tilapia.jpg': friedTilapia,
   'fried-chicken.jpg': friedChicken
 };
