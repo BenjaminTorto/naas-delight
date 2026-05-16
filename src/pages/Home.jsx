@@ -63,7 +63,7 @@ const Home = () => {
               <strong style={{ fontWeight: 600, display: 'block' }}>Ghana on<br />Your Plate</strong>
             </h1>
             <p style={{ fontSize: '0.88rem', color: '#8A7E6A', lineHeight: 1.8, margin: '1.5rem 0 2.5rem', maxWidth: '400px' }}>
-              Handcrafted with tradition. Every dish made fresh from authentic recipes — spices sourced directly from Ghana.
+              Handcrafted with tradition. Every dish made fresh from authentic recipes spices sourced directly from Ghana.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
               <Link to="/menu" style={{ backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '0.8rem 2rem', fontSize: '0.72rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, textDecoration: 'none', display: 'inline-block' }}>Browse Menu</Link>

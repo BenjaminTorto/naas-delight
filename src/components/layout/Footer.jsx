@@ -62,7 +62,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="text-sm text-muted leading-relaxed">
-                25 Grasmere Road, London SE25 4RF
+                 London SE25 4RF
               </li>
               <li>
                 <a href="https://wa.me/447833698693" target="_blank" rel="noreferrer" className="text-sm text-green-400 hover:text-green-300 transition-colors duration-200">
@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
         <div className="flex items-center justify-between pt-6">
           <span className="text-xs text-muted/40">
-            2025 Naas Delight. All rights reserved.
+            2026 Naas Delight. All rights reserved.
           </span>
           <div className="w-12 h-px bg-gradient-to-r from-gold to-transparent" />
         </div>
