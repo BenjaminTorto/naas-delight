@@ -19,16 +19,25 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const { data: orderData } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-      const { data: menuData } = await supabase.from('menu').select('*').order('name', { ascending: true });
+      const { data: orderData, error: orderErr } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
+      const { data: menuData, error: menuErr } = await supabase.from('menu').select('*').order('name', { ascending: true });
       
-      setOrders(orderData || []);
+      if (orderErr) console.error("Orders Fetch Error:", orderErr);
+      if (menuErr) console.error("Menu Fetch Error:", menuErr);
+
+      const parsedOrders = orderData || [];
+      setOrders(parsedOrders);
       setMenuItems(menuData || []);
       
-      const revenue = orderData?.reduce((acc, o) => acc + (Number(o.total_price) || 0), 0) || 0;
-      setStats({ totalOrders: orderData?.length || 0, totalRevenue: revenue });
+      // Dynamic key matching for schema compatibility (total_price vs totalPrice)
+      const revenue = parsedOrders.reduce((acc, o) => {
+        const rawPrice = o.total_price ?? o.totalPrice ?? o.price ?? 0;
+        return acc + (Number(rawPrice) || 0);
+      }, 0);
+
+      setStats({ totalOrders: parsedOrders.length, totalRevenue: revenue });
     } catch (err) {
-      console.error(err);
+      console.error("System catch block exception:", err);
     } finally {
       setLoading(false);
     }
@@ -46,12 +55,14 @@ const AdminDashboard = () => {
 
     checkUser();
 
-    const sub = supabase.channel('any').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'orders' }, () => {
+    const sub = supabase.channel('realtime-orders').on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'orders' }, () => {
       playSound();
       fetchData();
     }).subscribe();
 
-    return () => supabase.removeChannel(sub);
+    return () => {
+      supabase.removeChannel(sub);
+    };
   }, [navigate]);
 
   const handleLogout = async () => {
@@ -101,7 +112,7 @@ const AdminDashboard = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '4rem' }}>
           <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Completed Orders</p>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Active Volume</p>
             <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 300 }}>{stats.totalOrders}</p>
           </div>
           <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
@@ -116,33 +127,43 @@ const AdminDashboard = () => {
             {orders.length === 0 ? (
               <p style={{ color: '#8A7E6A', fontSize: '0.85rem', fontStyle: 'italic' }}>Waiting for fresh incoming orders...</p>
             ) : (
-              orders.map(order => (
-                <div key={order.id} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{order.id}</span>
-                      <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(order.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+              orders.map(order => {
+                // Defensive extraction to prevent empty string fallouts
+                const orderId = order.id;
+                const dateVal = order.created_at || order.createdAt;
+                const summary = order.items_summary || order.itemsSummary || "Custom Order Selection";
+                const clientName = order.customer_name || order.customerName || "Guest User";
+                const clientPhone = order.customer_phone || order.customerPhone || "No Phone Provided";
+                const totalCost = order.total_price ?? order.totalPrice ?? 0;
+
+                return (
+                  <div key={orderId} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{orderId}</span>
+                        {dateVal && <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(dateVal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
+                      </div>
+                      <p style={{ fontSize: '0.85rem', color: '#C9A84C', marginBottom: '0.25rem' }}>{summary}</p>
+                      <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {clientName} ({clientPhone})</p>
                     </div>
-                    <p style={{ fontSize: '0.85rem', color: '#C9A84C', marginBottom: '0.25rem' }}>{order.items_summary}</p>
-                    <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {order.customer_name} ({order.customer_phone})</p>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                      <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(totalCost).toFixed(2)}</span>
+                      <select 
+                        value={order.status || 'Pending'} 
+                        onChange={(e) => updateStatus(orderId, e.target.value)}
+                        style={{ backgroundColor: '#171717', color: '#F0EAD6', border: '1px solid rgba(201,168,76,0.2)', padding: '0.5rem 1rem', fontSize: '0.75rem', outline: 'none', cursor: 'pointer' }}
+                      >
+                        <option value="Pending">⏱ Pending</option>
+                        <option value="Preparing">🍳 Preparing</option>
+                        <option value="Ready">✅ Ready for Pickup</option>
+                        <option value="Completed">📦 Completed</option>
+                        <option value="Cancelled">❌ Cancelled</option>
+                      </select>
+                    </div>
                   </div>
-                  
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(order.total_price).toFixed(2)}</span>
-                    <select 
-                      value={order.status || 'Pending'} 
-                      onChange={(e) => updateStatus(order.id, e.target.value)}
-                      style={{ backgroundColor: '#171717', color: '#F0EAD6', border: '1px solid rgba(201,168,76,0.2)', padding: '0.5rem 1rem', fontSize: '0.75rem', outline: 'none', cursor: 'pointer' }}
-                    >
-                      <option value="Pending">⏱ Pending</option>
-                      <option value="Preparing">🍳 Preparing</option>
-                      <option value="Ready">✅ Ready for Pickup</option>
-                      <option value="Completed">📦 Completed</option>
-                      <option value="Cancelled">❌ Cancelled</option>
-                    </select>
-                  </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>
