@@ -197,7 +197,7 @@ const AdminDashboard = () => {
                     ) : (
                       <div style={{ cursor: 'pointer' }} onClick={() => { setEditingId(item.id); setNewPrice(item.price); }}>
                         <span style={{ fontSize: '0.85rem', color: '#8A7E6A' }}>Price: </span>
-                        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)} 📝</span>
+                        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
                       </div>
                     )}
                   </div>
