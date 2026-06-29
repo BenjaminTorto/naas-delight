@@ -23,8 +23,8 @@ export default {
         muted: '#8A7E6A',
       },
       fontFamily: {
-        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['Outfit', 'sans-serif'],
+  serif: ['Playfair Display', 'Georgia', 'serif'],
+  sans: ['Montserrat', 'sans-serif'],
       },
       keyframes: {
         ticker: {
