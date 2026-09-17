@@ -15,7 +15,7 @@ const TrackOrder = () => {
   return (
     <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div style={{ maxWidth: '400px', width: '100%', padding: '2rem', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', marginBottom: '1rem' }}>Track your Meal</h2>
+        <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.5rem', marginBottom: '1rem' }}>Track your Meal</h2>
         <p style={{ color: '#8A7E6A', fontSize: '0.8rem', marginBottom: '2.5rem' }}>Enter the Order ID sent to your WhatsApp/SMS.</p>
         
         <form onSubmit={handleSearch}>

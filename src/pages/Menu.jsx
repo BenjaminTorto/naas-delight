@@ -62,7 +62,7 @@ const Menu = () => {
   if (loading) {
     return (
       <div style={{minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <p style={{color: '#C9A84C', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem', letterSpacing: '0.1em'}}>Loading Delightful Menu...</p>
+        <p style={{color: '#C9A84C', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem', letterSpacing: '0.1em'}}>Loading Delightful Menu...</p>
       </div>
     )
   }
@@ -78,7 +78,7 @@ const Menu = () => {
             <span style={{fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A84C'}}>Culinary Art</span>
             <div style={{width: '24px', height: '1px', backgroundColor: '#C9A84C'}} />
           </div>
-          <h1 style={{fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#F0EAD6', marginBottom: '1rem'}}>
+          <h1 style={{fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, color: '#F0EAD6', marginBottom: '1rem'}}>
             The <em style={{fontStyle: 'italic', color: '#C9A84C'}}>Naas Delight</em> Menu
           </h1>
           <p style={{color: '#8A7E6A', fontSize: '0.85rem', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7}}>
@@ -158,7 +158,7 @@ const Menu = () => {
                     <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', display: 'block', marginBottom: '0.4rem'}}>
                       {item.category}
                     </span>
-                    <h3 style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 300, color: '#F0EAD6', marginBottom: '0.6rem'}}>
+                    <h3 style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.4rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '0.6rem'}}>
                       {item.name}
                     </h3>
                     <p style={{fontSize: '0.78rem', color: '#8A7E6A', lineHeight: 1.6, marginBottom: '1.5rem'}}>
@@ -167,7 +167,7 @@ const Menu = () => {
                   </div>
 
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid rgba(201,168,76,0.05)'}}>
-                    <span style={{fontFamily: 'Cormorant Garamond, serif', fontSize: '1.25rem', color: '#C9A84C', fontWeight: 400}}>
+                    <span style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.25rem', color: '#C9A84C', fontWeight: 400}}>
                       £{Number(item.price).toFixed(2)}
                     </span>
                     <button

@@ -17,7 +17,7 @@ const Contact = () => {
           {/* Left: Branding */}
           <div>
             <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C', marginBottom: '1.5rem' }} />
-            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '4rem', fontWeight: 300, marginBottom: '2rem' }}>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '4rem', fontWeight: 700, marginBottom: '2rem' }}>
               Connect with <br /><em style={{ fontStyle: 'italic', color: '#C9A84C' }}>the Kitchen</em>
             </h1>
             <p style={{ color: '#8A7E6A', lineHeight: 1.8, maxWidth: '400px', marginBottom: '3rem' }}>
@@ -36,7 +36,7 @@ const Contact = () => {
             {contactInfo.map((info) => (
               <div key={info.label} style={{ backgroundColor: '#111', padding: '2.5rem' }}>
                 <p style={{ fontSize: '0.6rem', color: '#C9A84C', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem' }}>{info.label}</p>
-                <p style={{ fontSize: '1.2rem', fontFamily: 'serif' }}>{info.value}</p>
+                <p style={{ fontSize: '1.2rem', fontFamily: 'Archivo, sans-serif' }}>{info.value}</p>
               </div>
             ))}
           </div>

@@ -23,11 +23,11 @@ const teamMembers = [
 
 const Team = () => {
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '140px', paddingBottom: '100px' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
+    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(100px, 16vw, 140px)', paddingBottom: 'clamp(4rem, 8vw, 100px)' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.25rem, 4vw, 2rem)' }}>
         
-        <header style={{ textAlign: 'center', marginBottom: '8rem' }}>
-          <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 300, marginBottom: '1.5rem' }}>
+        <header style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 8rem)' }}>
+          <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '1.5rem' }}>
             The <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>Team</em>
           </h1>
         </header>
@@ -35,7 +35,7 @@ const Team = () => {
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-          gap: '5rem'
+          gap: 'clamp(2.5rem, 6vw, 5rem)'
         }}>
           {teamMembers.map((member) => (
             <div key={member.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -55,7 +55,7 @@ const Team = () => {
               </div>
               
               <div style={{ textAlign: 'center' }}>
-                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.2rem', fontWeight: 300, marginBottom: '0.5rem' }}>{member.name}</h3>
+                <h3 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.2rem', fontWeight: 700, marginBottom: '0.5rem' }}>{member.name}</h3>
                 <p style={{ color: '#C9A84C', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 600 }}>{member.role}</p>
                 <p style={{ color: '#8A7E6A', fontSize: '0.95rem', lineHeight: '1.8', maxWidth: '300px', margin: '0 auto' }}>{member.bio}</p>
               </div>

@@ -74,7 +74,7 @@ const CartDrawer = () => {
         
         <div style={{ padding: '2.5rem 2rem', borderBottom: '1px solid #1A1A1A', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.2rem', color: '#F0EAD6', fontWeight: 300 }}>Your Bag</h2>
+            <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.2rem', color: '#F0EAD6', fontWeight: 700 }}>Your Bag</h2>
             <p style={{ color: '#C9A84C', fontSize: '0.65rem', letterSpacing: '0.2em', marginTop: '0.3rem' }}>{cart.length} ITEMS SELECTED</p>
           </div>
           <button 
@@ -110,7 +110,7 @@ const CartDrawer = () => {
                     />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <h4 style={{ color: '#F0EAD6', fontSize: '1.1rem', fontFamily: 'Cormorant Garamond, serif', margin: 0 }}>{item.name}</h4>
+                    <h4 style={{ color: '#F0EAD6', fontSize: '1.1rem', fontFamily: 'Archivo, sans-serif', margin: 0 }}>{item.name}</h4>
                     <p style={{ color: '#8A7E6A', fontSize: '0.75rem', marginTop: '0.4rem' }}>{item.quantity} x £{Number(item.price).toFixed(2)}</p>
                   </div>
                   <button 
@@ -129,7 +129,7 @@ const CartDrawer = () => {
           <div style={{ padding: '2.5rem 2rem', backgroundColor: '#0F0F0F', borderTop: '1px solid #1A1A1A' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2.5rem', alignItems: 'flex-end' }}>
               <span style={{ color: '#8A7E6A', fontSize: '0.7rem', letterSpacing: '0.2em' }}>SUBTOTAL</span>
-              <span style={{ color: '#C9A84C', fontSize: '2rem', fontFamily: 'Cormorant Garamond, serif' }}>£{cartTotal.toFixed(2)}</span>
+              <span style={{ color: '#C9A84C', fontSize: '2rem', fontFamily: 'Archivo, sans-serif' }}>£{cartTotal.toFixed(2)}</span>
             </div>
             <button 
               onClick={() => { setIsCartOpen(false); navigate('/checkout'); }}

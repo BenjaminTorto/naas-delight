@@ -65,7 +65,7 @@ const AdminDashboard = () => {
         
         <header style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4rem', borderBottom: '1px solid #222', paddingBottom:  '2rem' }}>
           <div>
-            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', fontWeight: 300 }}>Management</h1>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '3rem', fontWeight: 700 }}>Management</h1>
             <p style={{ color: '#C9A84C', letterSpacing: '0.2em', fontSize: '0.7rem' }}>LIVE KITCHEN FEED</p>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
 
         {/* Live Orders Section */}
         <section style={{ marginBottom: '6rem' }}>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', marginBottom: '2rem', color: '#C9A84C' }}>Active Orders</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', marginBottom: '2rem', color: '#C9A84C' }}>Active Orders</h2>
           <div style={{ display: 'grid', gap: '1.5rem' }}>
             {orders.map(order => (
               <div key={order.id} style={{ backgroundColor: '#111', border: '1px solid #222', padding: '2rem' }}>
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
 
         {/* PRICE MANAGEMENT SECTION */}
         <section style={{ borderTop: '1px solid #222', paddingTop: '4rem' }}>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', marginBottom: '2rem', color: '#C9A84C' }}>Edit Menu Prices</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', marginBottom: '2rem', color: '#C9A84C' }}>Edit Menu Prices</h2>
           <div style={{ display: 'grid', gap: '1rem' }}>
             {menuItems.map(item => (
               <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#111', padding: '1.2rem 2rem', border: '1px solid rgba(255,255,255,0.03)' }}>

@@ -8,14 +8,14 @@ const Contact = () => {
   ];
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '120px' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
+    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 140px)' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.25rem, 4vw, 2rem)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(2.5rem, 6vw, 4rem)' }}>
           
           {/* Left: Branding */}
           <div>
             <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C', marginBottom: '1.5rem' }} />
-            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '4rem', fontWeight: 300, marginBottom: '2rem' }}>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.4rem, 6vw, 4rem)', fontWeight: 700, marginBottom: '2rem' }}>
               Connect with <br /><em style={{ fontStyle: 'italic', color: '#C9A84C' }}>the Kitchen</em>
             </h1>
             <p style={{ color: '#8A7E6A', lineHeight: 1.8, maxWidth: '400px', marginBottom: '3rem' }}>
@@ -34,7 +34,7 @@ const Contact = () => {
             {contactInfo.map((info) => (
               <div key={info.label} style={{ backgroundColor: '#111', padding: '2.5rem' }}>
                 <p style={{ fontSize: '0.6rem', color: '#C9A84C', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem' }}>{info.label}</p>
-                <p style={{ fontSize: '1.2rem', fontFamily: 'serif' }}>{info.value}</p>
+                <p style={{ fontSize: '1.2rem', fontFamily: 'Archivo, sans-serif' }}>{info.value}</p>
               </div>
             ))}
           </div>

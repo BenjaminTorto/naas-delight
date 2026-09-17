@@ -117,7 +117,7 @@ const Checkout = () => {
     <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}>
       <div style={{ maxWidth: '500px', margin: '0 auto', padding: '0 1.5rem' }}>
 
-        <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'center' }}>
+        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'center' }}>
           Checkout
         </h1>
 

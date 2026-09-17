@@ -88,7 +88,7 @@ const AdminDashboard = () => {
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: '#C9A84C', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.5rem' }}>Verifying Portal Access...</p>
+        <p style={{ color: '#C9A84C', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem' }}>Verifying Portal Access...</p>
       </div>
     );
   }
@@ -100,7 +100,7 @@ const AdminDashboard = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(201,168,76,0.15)', paddingBottom: '1.5rem', marginBottom: '3rem' }}>
           <div>
             <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>Management Dashboard</span>
-            <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', fontWeight: 300, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.5rem', fontWeight: 700, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
           </div>
           <button 
             onClick={handleLogout}
@@ -113,16 +113,16 @@ const AdminDashboard = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '4rem' }}>
           <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
             <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Active Volume</p>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 300 }}>{stats.totalOrders}</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>{stats.totalOrders}</p>
           </div>
           <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
             <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Gross Pipeline Revenue</p>
-            <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 300 }}>£{stats.totalRevenue.toFixed(2)}</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>£{stats.totalRevenue.toFixed(2)}</p>
           </div>
         </div>
 
         <div style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', fontWeight: 300, marginBottom: '1.5rem', color: '#C9A84C' }}>Active Inbound Orders</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#C9A84C' }}>Active Inbound Orders</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {orders.length === 0 ? (
               <p style={{ color: '#8A7E6A', fontSize: '0.85rem', fontStyle: 'italic' }}>Waiting for fresh incoming orders...</p>
@@ -148,7 +148,7 @@ const AdminDashboard = () => {
                     </div>
                     
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                      <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(totalCost).toFixed(2)}</span>
+                      <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(totalCost).toFixed(2)}</span>
                       <select 
                         value={order.status || 'Pending'} 
                         onChange={(e) => updateStatus(orderId, e.target.value)}
@@ -169,13 +169,13 @@ const AdminDashboard = () => {
         </div>
 
         <div>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', fontWeight: 300, marginBottom: '1.5rem', color: '#C9A84C' }}>Live Menu Inventory Control</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#C9A84C' }}>Live Menu Inventory Control</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {menuItems.map(item => (
               <div key={item.id} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.05)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                    <h3 style={{ fontSize: '1rem', fontFamily: 'Cormorant Garamond, serif', fontWeight: 400, color: '#F0EAD6' }}>{item.name}</h3>
+                    <h3 style={{ fontSize: '1rem', fontFamily: 'Archivo, sans-serif', fontWeight: 400, color: '#F0EAD6' }}>{item.name}</h3>
                     <span style={{ fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>{item.category}</span>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ const AdminDashboard = () => {
                     ) : (
                       <div style={{ cursor: 'pointer' }} onClick={() => { setEditingId(item.id); setNewPrice(item.price); }}>
                         <span style={{ fontSize: '0.85rem', color: '#8A7E6A' }}>Price: </span>
-                        <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
+                        <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
                       </div>
                     )}
                   </div>

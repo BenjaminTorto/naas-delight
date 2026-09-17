@@ -38,7 +38,7 @@ const AdminLogin = () => {
           <div style={{ width: '16px', height: '1px', backgroundColor: '#C9A84C' }} />
         </div>
 
-        <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', fontWeight: 300, color: '#F0EAD6', marginBottom: '2rem' }}>
+        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '2rem' }}>
           Admin Portal
         </h1>
 

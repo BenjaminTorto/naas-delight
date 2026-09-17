@@ -58,7 +58,7 @@ const Home = () => {
               <div style={{ width: '32px', height: '1px', backgroundColor: '#C9A84C' }} />
               <span style={{ fontSize: '0.68rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C' }}>Authentic Ghanaian Cuisine · Take-Out Only</span>
             </div>
-            <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5.5vw, 5.8rem)', fontWeight: 300, lineHeight: 1, color: '#F0EAD6' }}>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5.5vw, 5.8rem)', fontWeight: 700, lineHeight: 1, color: '#F0EAD6' }}>
               <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>The Soul of</em>
               <strong style={{ fontWeight: 600, display: 'block' }}>Ghana on<br />Your Plate</strong>
             </h1>
@@ -72,7 +72,7 @@ const Home = () => {
             <div style={{ display: 'flex', gap: isMobile ? '1.5rem' : '2.5rem', marginTop: '3rem', paddingTop: '2rem', borderTop: '1px solid rgba(201,168,76,0.12)' }}>
               {[{ num: '17+', label: 'Signature Dishes' }, { num: '100%', label: 'Authentic Recipes' }, { num: '5★', label: 'Customer Rating' }].map(s => (
                 <div key={s.label}>
-                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.2rem', fontWeight: 300, color: '#C9A84C', lineHeight: 1 }}>{s.num}</p>
+                  <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.2rem', fontWeight: 700, color: '#C9A84C', lineHeight: 1 }}>{s.num}</p>
                   <p style={{ fontSize: '0.68rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A', marginTop: '0.3rem' }}>{s.label}</p>
                 </div>
               ))}
@@ -85,8 +85,8 @@ const Home = () => {
               {chefPick.image && <img src={chefPick.image} alt={chefPick.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(12,12,12,0.75), transparent 55%)' }} />
               <span style={{ position: 'absolute', top: '1.2rem', left: '1.2rem', backgroundColor: '#C9A84C', color: '#0C0C0C', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, padding: '0.35rem 0.9rem' }}>Chef's Pick</span>
-              <span style={{ position: 'absolute', bottom: '1.2rem', left: '1.2rem', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.4rem', fontWeight: 300, color: '#F0EAD6' }}>{chefPick.name}</span>
-              <span style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#C9A84C' }}>£{chefPick.price.toFixed(2)}</span>
+              <span style={{ position: 'absolute', bottom: '1.2rem', left: '1.2rem', fontFamily: 'Archivo, sans-serif', fontSize: '1.4rem', fontWeight: 700, color: '#F0EAD6' }}>{chefPick.name}</span>
+              <span style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', fontFamily: 'Archivo, sans-serif', fontSize: '1.1rem', color: '#C9A84C' }}>£{chefPick.price.toFixed(2)}</span>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginTop: '10px' }}>
               {menuItems.slice(1, 4).map(item => (
@@ -133,7 +133,7 @@ const Home = () => {
                 <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C' }} />
                 <span style={{ fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C' }}>Our Menu</span>
               </div>
-              <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? '2rem' : 'clamp(2rem, 3.5vw, 3.2rem)', fontWeight: 300, color: '#F0EAD6' }}>
+              <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: isMobile ? '2rem' : 'clamp(2rem, 3.5vw, 3.2rem)', fontWeight: 700, color: '#F0EAD6' }}>
                 Dishes crafted with <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>love & tradition</em>
               </h2>
             </div>
@@ -160,9 +160,9 @@ const Home = () => {
             </div>
             <div style={{ backgroundColor: '#171717', padding: isMobile ? '2rem 1.5rem' : '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <span style={{ display: 'inline-block', border: '1px solid #C9A84C', color: '#C9A84C', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', padding: '0.3rem 0.9rem', marginBottom: '1.5rem', width: 'fit-content' }}>Featured Dish</span>
-              <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: isMobile ? '1.8rem' : '2.2rem', fontWeight: 300, color: '#F0EAD6', lineHeight: 1.1, marginBottom: '0.75rem' }}>Signature<br />Jollof Rice</h3>
+              <h3 style={{ fontFamily: 'Archivo, sans-serif', fontSize: isMobile ? '1.8rem' : '2.2rem', fontWeight: 700, color: '#F0EAD6', lineHeight: 1.1, marginBottom: '0.75rem' }}>Signature<br />Jollof Rice</h3>
               <p style={{ fontSize: '0.83rem', color: '#8A7E6A', lineHeight: 1.8, marginBottom: '1.5rem' }}>Slow-cooked in a rich tomato base infused with scotch bonnet peppers and a secret blend of West African spices.</p>
-              <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', color: '#C9A84C', fontWeight: 300, marginBottom: '1.5rem' }}>£12.00</p>
+              <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', color: '#C9A84C', fontWeight: 700, marginBottom: '1.5rem' }}>£12.00</p>
               <button onClick={() => openModal(chefPick)} style={{ backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '0.75rem 1.8rem', fontSize: '0.70rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, border: 'none', cursor: 'pointer', width: 'fit-content' }}>Add to Order</button>
             </div>
           </div>
@@ -183,10 +183,10 @@ const Home = () => {
                 </div>
                 <div style={{ padding: '1.1rem 1.2rem 1.3rem' }}>
                   <p style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.4rem' }}>{item.category}</p>
-                  <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.1rem', color: '#F0EAD6', marginBottom: '0.3rem' }}>{item.name}</p>
+                  <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.1rem', color: '#F0EAD6', marginBottom: '0.3rem' }}>{item.name}</p>
                   <p style={{ fontSize: '0.75rem', color: '#8A7E6A', lineHeight: 1.6, marginBottom: '0.85rem' }}>{item.description ? `${item.description.substring(0, 80)}...` : ''}</p>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.05rem', color: '#C9A84C' }}>£{item.price.toFixed(2)}</span>
+                    <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.05rem', color: '#C9A84C' }}>£{item.price.toFixed(2)}</span>
                     <button style={{ width: '30px', height: '30px', border: '1px solid rgba(201,168,76,0.3)', background: 'transparent', color: '#C9A84C', fontSize: '1.1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>+</button>
                   </div>
                 </div>

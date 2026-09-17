@@ -32,9 +32,9 @@ const OrderConfirmation = () => {
   );
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '120px', textAlign: 'center' }}>
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: '2rem', backgroundColor: '#111', border: '1px solid #C9A84C' }}>
-        <h1 style={{ fontFamily: 'serif', fontSize: '2.5rem', marginBottom: '1rem' }}>Order Confirmed!</h1>
+    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 120px)', paddingLeft: '1.25rem', paddingRight: '1.25rem', textAlign: 'center' }}>
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: 'clamp(1.5rem, 5vw, 2rem)', backgroundColor: '#111', border: '1px solid #C9A84C' }}>
+        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: '1rem' }}>Order Confirmed!</h1>
         <p style={{ color: '#8A7E6A', marginBottom: '2rem' }}>Order ID: {order.id.slice(0, 8)}</p>
         
         <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
