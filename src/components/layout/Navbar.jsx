@@ -42,19 +42,7 @@ const Navbar = () => {
           Naa's Delight
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <ul className="hidden lg:flex items-center gap-8">
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                className={`text-xs tracking-widest uppercase font-normal transition-colors duration-200 ${isActive(link.to) ? 'text-gold' : 'text-muted hover:text-gold'}`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {/* Nav links now live exclusively behind the menu button below */}
 
         {/* The Cart/Bag Button - Triggers Drawer */}
         <div className="flex items-center gap-6">
@@ -70,10 +58,11 @@ const Navbar = () => {
             </div>
           </button>
 
-          {/* Mobile Menu Toggle */}
+          {/* Menu Toggle - visible at every screen size */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-1"
+            aria-label="Open menu"
+            className="flex flex-col gap-1.5 p-1"
           >
             <span className={`block w-6 h-px bg-cream transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`block w-6 h-px bg-cream transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
@@ -82,9 +71,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`lg:hidden transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="bg-[#0C0C0C] border-t border-gold/10 px-6 py-6 flex flex-col gap-5">
+      {/* Menu Overlay - shows the six pages when the icon is tapped, at every screen size */}
+      <div className={`transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="bg-[#0C0C0C] border-t border-gold/10 px-6 lg:px-12 py-6 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-10">
           {links.map((link) => (
             <Link
               key={link.to}
@@ -99,7 +88,7 @@ const Navbar = () => {
               setMenuOpen(false);
               toggleCart();
             }}
-            className="border border-gold text-gold px-5 py-3 text-xs tracking-widest uppercase font-medium text-center mt-2 hover:bg-gold hover:text-black transition-all duration-200"
+            className="border border-gold text-gold px-5 py-3 text-xs tracking-widest uppercase font-medium text-center sm:ml-auto hover:bg-gold hover:text-black transition-all duration-200"
           >
             View Basket ({cartCount})
           </button>
