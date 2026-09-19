@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
+import KitchenStatusBadge from '../ui/KitchenStatusBadge'
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
@@ -44,29 +45,36 @@ const Navbar = () => {
 
         {/* Nav links now live exclusively behind the menu button below */}
 
-        {/* The Cart/Bag Button - Triggers Drawer */}
-        <div className="flex items-center gap-6">
+        {/* Header icon buttons: kitchen status, circular bag button with count badge, circular menu button */}
+        <div className="flex items-center gap-4">
+          <KitchenStatusBadge className="hidden sm:inline-flex" />
+
           <button
             onClick={toggleCart}
-            className="flex items-center gap-2 text-gold group transition-all duration-200"
+            aria-label="View bag"
+            className="relative w-11 h-11 rounded-full bg-black-2 border border-gold/15 flex items-center justify-center text-cream hover:border-gold/40 transition-all duration-200"
           >
-            <span className="text-[10px] tracking-[0.3em] uppercase font-bold opacity-80 group-hover:opacity-100">
-              Bag
-            </span>
-            <div className="flex items-center justify-center bg-gold/10 border border-gold/30 px-2 py-0.5 rounded-sm min-w-[28px] group-hover:bg-gold group-hover:text-black transition-all">
-              <span className="text-[11px] font-bold">{cartCount}</span>
-            </div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+              <path d="M3 6h18" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1 rounded-full bg-gold text-black text-[11px] font-bold">
+                {cartCount}
+              </span>
+            )}
           </button>
 
           {/* Menu Toggle - visible at every screen size */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Open menu"
-            className="flex flex-col gap-1.5 p-1"
+            className="w-11 h-11 rounded-full bg-black-2 border border-gold/15 flex flex-col items-center justify-center gap-1.5 hover:border-gold/40 transition-all duration-200"
           >
-            <span className={`block w-6 h-px bg-cream transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-6 h-px bg-cream transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-6 h-px bg-cream transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`block w-5 h-px bg-cream transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-5 h-px bg-cream transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-px bg-cream transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
       </div>
@@ -74,6 +82,7 @@ const Navbar = () => {
       {/* Menu Overlay - shows the six pages when the icon is tapped, at every screen size */}
       <div className={`transition-all duration-300 overflow-hidden ${menuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="bg-[#0C0C0C] border-t border-gold/10 px-6 lg:px-12 py-6 flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-10">
+          <KitchenStatusBadge className="sm:hidden" />
           {links.map((link) => (
             <Link
               key={link.to}

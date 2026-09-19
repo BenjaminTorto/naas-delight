@@ -1,4 +1,5 @@
 import React from 'react';
+import KenteAccent from '../components/ui/KenteAccent';
 
 const Contact = () => {
   const contactInfo = [
@@ -14,7 +15,7 @@ const Contact = () => {
           
           {/* Left: Branding */}
           <div>
-            <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C', marginBottom: '1.5rem' }} />
+            <KenteAccent width={28} style={{ marginBottom: '1.5rem' }} />
             <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.4rem, 6vw, 4rem)', fontWeight: 700, marginBottom: '2rem' }}>
               Connect with <br /><em style={{ fontStyle: 'italic', color: '#C9A84C' }}>the Kitchen</em>
             </h1>

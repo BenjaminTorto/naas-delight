@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { menuItems, categories } from '../lib/data'
 import OrderModal from '../components/ui/OrderModal'
+import KenteAccent from '../components/ui/KenteAccent'
 
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(() => 
@@ -55,7 +56,7 @@ const Home = () => {
         }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
-              <div style={{ width: '32px', height: '1px', backgroundColor: '#C9A84C' }} />
+              <KenteAccent width={32} />
               <span style={{ fontSize: '0.68rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C' }}>Authentic Ghanaian Cuisine · Take-Out Only</span>
             </div>
             <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: isMobile ? '3rem' : 'clamp(3rem, 5.5vw, 5.8rem)', fontWeight: 700, lineHeight: 1, color: '#F0EAD6' }}>
@@ -130,7 +131,7 @@ const Home = () => {
           }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.75rem' }}>
-                <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C' }} />
+                <KenteAccent width={28} />
                 <span style={{ fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A84C' }}>Our Menu</span>
               </div>
               <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: isMobile ? '2rem' : 'clamp(2rem, 3.5vw, 3.2rem)', fontWeight: 700, color: '#F0EAD6' }}>

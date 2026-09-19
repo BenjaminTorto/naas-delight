@@ -1,5 +1,7 @@
 import React from 'react';
 
+import KenteAccent from '../components/ui/KenteAccent';
+
 const About = () => {
   return (
     <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 140px)' }}>
@@ -8,7 +10,7 @@ const About = () => {
         {/* Story Section */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(2.5rem, 6vw, 6rem)', alignItems: 'center', marginBottom: 'clamp(3.5rem, 8vw, 8rem)' }}>
           <div>
-            <div style={{ width: '28px', height: '1px', backgroundColor: '#C9A84C', marginBottom: '1.5rem' }} />
+            <KenteAccent width={28} style={{ marginBottom: '1.5rem' }} />
             <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.6rem, 6vw, 5rem)', fontWeight: 700, lineHeight: 1.1, marginBottom: '2rem' }}>
               Our <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>Heritage</em>
             </h1>

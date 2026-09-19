@@ -1,4 +1,5 @@
 import React from 'react';
+import KenteAccent from '../components/ui/KenteAccent';
 
 // You must import the images from the 'food' folder in assets
 import victoriaImg from '../assets/food/victoria.jpg';
@@ -27,6 +28,9 @@ const Team = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 clamp(1.25rem, 4vw, 2rem)' }}>
         
         <header style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 8vw, 8rem)' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <KenteAccent width={32} />
+          </div>
           <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 700, marginBottom: '1.5rem' }}>
             The <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>Team</em>
           </h1>

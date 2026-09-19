@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { categories } from '../lib/data' 
 import { useCart } from '../context/CartContext'
 import { supabase } from '../lib/supabase'
+import KenteAccent from '../components/ui/KenteAccent'
 
 // Asset imports
 import jollofRice from '../assets/food/jollof-rice.jpg'
@@ -74,9 +75,9 @@ const Menu = () => {
         {/* Header */}
         <div style={{textAlign: 'center', marginBottom: '4rem'}}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', marginBottom: '1rem'}}>
-            <div style={{width: '24px', height: '1px', backgroundColor: '#C9A84C'}} />
+            <KenteAccent width={24} />
             <span style={{fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A84C'}}>Culinary Art</span>
-            <div style={{width: '24px', height: '1px', backgroundColor: '#C9A84C'}} />
+            <KenteAccent width={24} />
           </div>
           <h1 style={{fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, color: '#F0EAD6', marginBottom: '1rem'}}>
             The <em style={{fontStyle: 'italic', color: '#C9A84C'}}>Naas Delight</em> Menu
@@ -122,6 +123,9 @@ const Menu = () => {
                 style={{
                   backgroundColor: '#111111',
                   border: '1px solid rgba(201,168,76,0.08)',
+                  borderRadius: '20px',
+                  overflow: 'hidden',
+                  boxShadow: '0 24px 48px -24px rgba(0,0,0,0.65)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -153,7 +157,7 @@ const Menu = () => {
                   )}
                 </div>
 
-                <div style={{padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                <div style={{padding: '1.75rem 1.75rem 2rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                   <div>
                     <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', display: 'block', marginBottom: '0.4rem'}}>
                       {item.category}
