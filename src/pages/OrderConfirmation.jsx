@@ -59,7 +59,13 @@ const OrderConfirmation = () => {
         <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: '0.5rem' }}>
           {order.status === 'Completed' ? 'Order Picked Up' : order.status === 'Cancelled' ? 'Order Cancelled' : 'Order Confirmed!'}
         </h1>
-        <p style={{ color: '#8A7E6A', marginBottom: '2rem' }}>Order ID: {order.id.slice(0, 8)}</p>
+        <p style={{ color: '#8A7E6A', marginBottom: '0.5rem' }}>Order ID: {order.id.slice(0, 8)}</p>
+        {order.scheduled_for && (
+          <p style={{ color: '#8A7E6A', marginBottom: '2rem' }}>
+            Requested for: <span style={{ color: '#C9A84C' }}>{order.scheduled_for}</span>
+          </p>
+        )}
+        {!order.scheduled_for && <div style={{ marginBottom: '1.5rem' }} />}
 
         <OrderTracker status={order.status || 'Pending'} />
 

@@ -31,6 +31,7 @@ const Navbar = () => {
     { to: '/team', label: 'Team' },
     { to: '/contact', label: 'Contact' },
     { to: '/track', label: 'Track Order' },
+    { to: '/events', label: 'Book an Event' },
   ]
 
   const isActive = (path) => location.pathname === path

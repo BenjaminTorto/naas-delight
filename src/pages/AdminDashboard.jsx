@@ -131,20 +131,34 @@ const AdminDashboard = () => {
                 // Defensive extraction to prevent empty string fallouts
                 const orderId = order.id;
                 const dateVal = order.created_at || order.createdAt;
-                const summary = order.items_summary || order.itemsSummary || "Custom Order Selection";
+                const isEventBooking = order.delivery_address === 'EVENT BOOKING';
+                const summary = order.items_summary || order.itemsSummary
+                  || (isEventBooking && order.items?.[0]?.name)
+                  || "Custom Order Selection";
                 const clientName = order.customer_name || order.customerName || "Guest User";
                 const clientPhone = order.customer_phone || order.customerPhone || "No Phone Provided";
                 const totalCost = order.total_price ?? order.totalPrice ?? 0;
 
                 return (
-                  <div key={orderId} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={orderId} style={{ backgroundColor: '#111111', border: isEventBooking ? '1px solid rgba(201,168,76,0.4)' : '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ minWidth: '200px' }}>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+                        {isEventBooking && (
+                          <span style={{ fontSize: '0.6rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#0C0C0C', backgroundColor: '#C9A84C', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
+                            Event Booking
+                          </span>
+                        )}
                         <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{orderId}</span>
                         {dateVal && <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(dateVal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
                       </div>
                       <p style={{ fontSize: '0.85rem', color: '#C9A84C', marginBottom: '0.25rem' }}>{summary}</p>
+                      {isEventBooking && order.items?.[0]?.menu_requests && (
+                        <p style={{ fontSize: '0.75rem', color: '#8A7E6A', marginBottom: '0.25rem' }}>Requests: {order.items[0].menu_requests}</p>
+                      )}
                       <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {clientName} ({clientPhone})</p>
+                      {order.scheduled_for && order.scheduled_for !== 'ASAP' && (
+                        <p style={{ fontSize: '0.75rem', color: '#E2C06E', marginTop: '0.25rem' }}>Requested for: {order.scheduled_for}</p>
+                      )}
                     </div>
                     
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>

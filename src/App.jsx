@@ -14,6 +14,7 @@ import Menu from './pages/Menu';
 import About from './pages/About';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
+import Events from './pages/Events';
 import Checkout from './pages/Checkout';
 import TrackOrder from './pages/TrackOrder';
 import OrderConfirmation from './pages/OrderConfirmation';
@@ -31,6 +32,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<AnimatedPage><About /></AnimatedPage>} />
         <Route path="/team" element={<AnimatedPage><Team /></AnimatedPage>} />
         <Route path="/contact" element={<AnimatedPage><Contact /></AnimatedPage>} />
+        <Route path="/events" element={<AnimatedPage><Events /></AnimatedPage>} />
         <Route path="/checkout" element={<AnimatedPage><Checkout /></AnimatedPage>} />
         <Route path="/track" element={<AnimatedPage><TrackOrder /></AnimatedPage>} />
         <Route path="/order-confirmation/:orderId" element={<AnimatedPage><OrderConfirmation /></AnimatedPage>} />
