@@ -94,13 +94,13 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', color: '#F0EAD6', padding: '120px 2rem 4rem' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', color: '#F0EAD6', padding: 'clamp(100px, 15vw, 120px) clamp(1.25rem, 4vw, 2rem) 4rem' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(201,168,76,0.15)', paddingBottom: '1.5rem', marginBottom: '3rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', borderBottom: '1px solid rgba(201,168,76,0.15)', paddingBottom: '1.5rem', marginBottom: 'clamp(2rem, 5vw, 3rem)' }}>
           <div>
             <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>Management Dashboard</span>
-            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.5rem', fontWeight: 700, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
+            <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 700, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
           </div>
           <button 
             onClick={handleLogout}
@@ -110,14 +110,14 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '4rem' }}>
-          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginBottom: 'clamp(2.5rem, 6vw, 4rem)' }}>
+          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
             <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Active Volume</p>
-            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>{stats.totalOrders}</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>{stats.totalOrders}</p>
           </div>
-          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '2rem' }}>
+          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
             <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Gross Pipeline Revenue</p>
-            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: '3rem', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>£{stats.totalRevenue.toFixed(2)}</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>£{stats.totalRevenue.toFixed(2)}</p>
           </div>
         </div>
 
@@ -137,9 +137,9 @@ const AdminDashboard = () => {
                 const totalCost = order.total_price ?? order.totalPrice ?? 0;
 
                 return (
-                  <div key={orderId} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                  <div key={orderId} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ minWidth: '200px' }}>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
                         <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{orderId}</span>
                         {dateVal && <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(dateVal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
                       </div>
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
                       <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {clientName} ({clientPhone})</p>
                     </div>
                     
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
                       <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(totalCost).toFixed(2)}</span>
                       <select 
                         value={order.status || 'Pending'} 

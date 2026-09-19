@@ -3,6 +3,8 @@ import { categories } from '../lib/data'
 import { useCart } from '../context/CartContext'
 import { supabase } from '../lib/supabase'
 import KenteAccent from '../components/ui/KenteAccent'
+import HeatLevel from '../components/ui/HeatLevel'
+import { getHeatLevel } from '../lib/heatLevel'
 
 // Asset imports
 import jollofRice from '../assets/food/jollof-rice.jpg'
@@ -159,9 +161,12 @@ const Menu = () => {
 
                 <div style={{padding: '1.75rem 1.75rem 2rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                   <div>
-                    <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', display: 'block', marginBottom: '0.4rem'}}>
-                      {item.category}
-                    </span>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem'}}>
+                      <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C'}}>
+                        {item.category}
+                      </span>
+                      <HeatLevel level={getHeatLevel(item)} />
+                    </div>
                     <h3 style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.4rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '0.6rem'}}>
                       {item.name}
                     </h3>

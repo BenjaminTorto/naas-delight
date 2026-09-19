@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import KenteAccent from '../components/ui/KenteAccent'
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('')
@@ -29,13 +30,13 @@ const AdminLogin = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '140px 2rem 4rem', position: 'relative', zIndex: 10 }}>
-      <div style={{ maxWidth: '400px', width: '100%', backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.15)', padding: '2.5rem', textAlign: 'center' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(100px, 15vw, 140px) 1.25rem 4rem', position: 'relative', zIndex: 10 }}>
+      <div style={{ maxWidth: '400px', width: '100%', backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.15)', padding: 'clamp(1.75rem, 5vw, 2.5rem)', textAlign: 'center' }}>
         
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-          <div style={{ width: '16px', height: '1px', backgroundColor: '#C9A84C' }} />
+          <KenteAccent width={20} />
           <span style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C9A84C' }}>Internal Access</span>
-          <div style={{ width: '16px', height: '1px', backgroundColor: '#C9A84C' }} />
+          <KenteAccent width={20} />
         </div>
 
         <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '2rem' }}>

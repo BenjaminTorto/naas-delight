@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import OrderTracker from '../components/ui/OrderTracker';
 
 const OrderConfirmation = () => {
   const { orderId } = useParams();
@@ -22,6 +23,27 @@ const OrderConfirmation = () => {
     if (orderId) fetchOrder();
   }, [orderId]);
 
+  // Live-update the tracker the moment staff change the status in the
+  // admin dashboard, without the customer needing to refresh the page.
+  useEffect(() => {
+    if (!orderId) return;
+
+    const channel = supabase
+      .channel(`order-status-${orderId}`)
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'orders', filter: `id=eq.${orderId}` },
+        (payload) => {
+          setOrder((prev) => (prev ? { ...prev, ...payload.new } : payload.new));
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [orderId]);
+
   if (loading) return <div style={msgStyle}>Verifying Receipt...</div>;
 
   if (!order) return (
@@ -34,9 +56,13 @@ const OrderConfirmation = () => {
   return (
     <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 120px)', paddingLeft: '1.25rem', paddingRight: '1.25rem', textAlign: 'center' }}>
       <div style={{ maxWidth: '600px', margin: '0 auto', padding: 'clamp(1.5rem, 5vw, 2rem)', backgroundColor: '#111', border: '1px solid #C9A84C' }}>
-        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: '1rem' }}>Order Confirmed!</h1>
+        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: '0.5rem' }}>
+          {order.status === 'Completed' ? 'Order Picked Up' : order.status === 'Cancelled' ? 'Order Cancelled' : 'Order Confirmed!'}
+        </h1>
         <p style={{ color: '#8A7E6A', marginBottom: '2rem' }}>Order ID: {order.id.slice(0, 8)}</p>
-        
+
+        <OrderTracker status={order.status || 'Pending'} />
+
         <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
           {order.items.map((item, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
@@ -51,7 +77,7 @@ const OrderConfirmation = () => {
         </div>
 
         <Link to="/track" style={{ backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '1rem 2rem', textDecoration: 'none', fontWeight: 'bold' }}>
-          TRACK STATUS
+          TRACK ANOTHER ORDER
         </Link>
       </div>
     </div>
