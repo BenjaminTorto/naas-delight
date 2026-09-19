@@ -93,9 +93,9 @@ const Checkout = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const generateWhatsAppUrl = (orderId) => {
+  const generateWhatsAppUrl = (displayId, trackingLink) => {
     let text = `*NEW ORDER — Naa's Delight*\n`;
-    text += `*Order ID:* #${orderId}\n`;
+    text += `*Order ID:* #${displayId}\n`;
     text += `*Method:* ${serviceMethod.toUpperCase()}\n`;
     text += `*Requested Time:* ${requestedTimeLabel}\n\n`;
     text += `*Customer:* ${formData.name}\n`;
@@ -117,6 +117,9 @@ const Checkout = () => {
     text += `\n\n*Subtotal:* £${cartTotal.toFixed(2)}`;
     text += `\n*${serviceMethod === 'pickup' ? 'Pickup' : 'Delivery'}:* ${deliveryFee === 0 ? 'FREE' : `£${deliveryFee.toFixed(2)}`}`;
     text += `\n*TOTAL: £${finalTotal.toFixed(2)}*`;
+    if (trackingLink) {
+      text += `\n\n*Track your order:* ${trackingLink}`;
+    }
 
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
   };
@@ -128,9 +131,7 @@ const Checkout = () => {
     setIsSubmitting(true);
 
     const tempId = Math.random().toString(36).slice(2, 8).toUpperCase();
-    const whatsappUrl = generateWhatsAppUrl(tempId);
-
-    window.open(whatsappUrl, '_blank');
+    let finalId = tempId;
 
     try {
       const basePayload = {
@@ -159,15 +160,24 @@ const Checkout = () => {
         error = retry.error;
       }
 
-      const finalId = (!error && data?.[0]?.id) ? data[0].id.toString().slice(0, 6) : tempId;
-      
-      navigate(`/order-confirmation/${finalId}`);
+      // Use the REAL database id (not a truncated version) so the
+      // tracking link and this order's Supabase row always match —
+      // previously the WhatsApp message and the tracking URL could end
+      // up with two different, disconnected IDs.
+      if (!error && data?.[0]?.id) {
+        finalId = data[0].id;
+      }
     } catch (err) {
-      console.warn("Supabase log skipped, continuing to confirmation.");
-      navigate(`/order-confirmation/${tempId}`);
-    } finally {
-      setIsSubmitting(false);
+      console.warn("Supabase save failed, falling back to WhatsApp-only order.", err);
     }
+
+    const displayId = finalId.toString().slice(0, 6).toUpperCase();
+    const trackingLink = `${window.location.origin}/order-confirmation/${finalId}`;
+    const whatsappUrl = generateWhatsAppUrl(displayId, trackingLink);
+
+    window.open(whatsappUrl, '_blank');
+    navigate(`/order-confirmation/${finalId}`);
+    setIsSubmitting(false);
   };
 
   const inputStyle = {
