@@ -64,27 +64,27 @@ const Menu = () => {
 
   if (loading) {
     return (
-      <div style={{minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <p style={{color: '#C9A84C', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem', letterSpacing: '0.1em'}}>Loading Delightful Menu...</p>
+      <div style={{minHeight: '100vh', backgroundColor: 'var(--bg-page)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <p style={{color: 'var(--gold)', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem', letterSpacing: '0.1em'}}>Loading Delightful Menu...</p>
       </div>
     )
   }
 
   return (
-    <div style={{backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '120px', paddingBottom: '6rem'}}>
+    <div style={{backgroundColor: 'var(--bg-page)', color: 'var(--cream)', minHeight: '100vh', paddingTop: '120px', paddingBottom: '6rem'}}>
       <div style={{maxWidth: '1200px', margin: '0 auto', padding: '0 3rem'}}>
         
         {/* Header */}
         <div style={{textAlign: 'center', marginBottom: '4rem'}}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.8rem', marginBottom: '1rem'}}>
             <KenteAccent width={24} />
-            <span style={{fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A84C'}}>Culinary Art</span>
+            <span style={{fontSize: '0.65rem', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)'}}>Culinary Art</span>
             <KenteAccent width={24} />
           </div>
-          <h1 style={{fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, color: '#F0EAD6', marginBottom: '1rem'}}>
-            The <em style={{fontStyle: 'italic', color: '#C9A84C'}}>Naas Delight</em> Menu
+          <h1 style={{fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, color: 'var(--cream)', marginBottom: '1rem'}}>
+            The <em style={{fontStyle: 'italic', color: 'var(--gold)'}}>Naas Delight</em> Menu
           </h1>
-          <p style={{color: '#8A7E6A', fontSize: '0.85rem', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7}}>
+          <p style={{color: 'var(--muted)', fontSize: '0.85rem', maxWidth: '500px', margin: '0 auto', lineHeight: 1.7}}>
             Every dish is prepared fresh on request using authentic ingredients. Choose your favorites for local pick-up.
           </p>
         </div>
@@ -103,8 +103,8 @@ const Menu = () => {
                 border: 'none',
                 background: 'transparent',
                 cursor: 'pointer',
-                borderBottom: activeCategory === cat.name ? '2px solid #C9A84C' : '2px solid transparent',
-                color: activeCategory === cat.name ? '#C9A84C' : '#8A7E6A',
+                borderBottom: activeCategory === cat.name ? '2px solid var(--gold)' : '2px solid transparent',
+                color: activeCategory === cat.name ? 'var(--gold)' : 'var(--muted)',
                 marginBottom: '-1px',
                 transition: 'all 0.3s ease',
                 whiteSpace: 'nowrap'
@@ -123,7 +123,7 @@ const Menu = () => {
               <div 
                 key={item.id} 
                 style={{
-                  backgroundColor: '#111111',
+                  backgroundColor: 'var(--bg-surface)',
                   border: '1px solid rgba(201,168,76,0.08)',
                   borderRadius: '20px',
                   overflow: 'hidden',
@@ -148,12 +148,12 @@ const Menu = () => {
                   
                   {/* Status Tag */}
                   {item.tag && available && (
-                    <span style={{position: 'absolute', top: '1rem', right: '1rem', backgroundColor: '#C9A84C', color: '#0C0C0C', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, padding: '0.35rem 0.8rem'}}>
+                    <span style={{position: 'absolute', top: '1rem', right: '1rem', backgroundColor: 'var(--gold)', color: 'var(--bg-page)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, padding: '0.35rem 0.8rem'}}>
                       {item.tag}
                     </span>
                   )}
                   {!available && (
-                    <span style={{position: 'absolute', top: '1rem', right: '1rem', backgroundColor: '#2A2A2A', color: '#8A7E6A', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, padding: '0.35rem 0.8rem'}}>
+                    <span style={{position: 'absolute', top: '1rem', right: '1rem', backgroundColor: 'var(--bg-surface-alt)', color: 'var(--muted)', fontSize: '0.58rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, padding: '0.35rem 0.8rem'}}>
                       Sold Out
                     </span>
                   )}
@@ -162,21 +162,21 @@ const Menu = () => {
                 <div style={{padding: '1.75rem 1.75rem 2rem', flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                   <div>
                     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.4rem'}}>
-                      <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C'}}>
+                      <span style={{fontSize: '0.58rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)'}}>
                         {item.category}
                       </span>
                       <HeatLevel level={getHeatLevel(item)} />
                     </div>
-                    <h3 style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.4rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '0.6rem'}}>
+                    <h3 style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.4rem', fontWeight: 700, color: 'var(--cream)', marginBottom: '0.6rem'}}>
                       {item.name}
                     </h3>
-                    <p style={{fontSize: '0.78rem', color: '#8A7E6A', lineHeight: 1.6, marginBottom: '1.5rem'}}>
+                    <p style={{fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '1.5rem'}}>
                       {item.description}
                     </p>
                   </div>
 
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid rgba(201,168,76,0.05)'}}>
-                    <span style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.25rem', color: '#C9A84C', fontWeight: 400}}>
+                    <span style={{fontFamily: 'Archivo, sans-serif', fontSize: '1.25rem', color: 'var(--gold)', fontWeight: 400}}>
                       £{Number(item.price).toFixed(2)}
                     </span>
                     <button
@@ -184,8 +184,8 @@ const Menu = () => {
                       disabled={!available}
                       style={{
                         backgroundColor: available ? 'transparent' : 'transparent',
-                        border: available ? '1px solid #C9A84C' : '1px solid rgba(138,126,106,0.2)',
-                        color: available ? '#C9A84C' : '#5A5040',
+                        border: available ? '1px solid var(--gold)' : '1px solid rgba(138,126,106,0.2)',
+                        color: available ? 'var(--gold)' : 'var(--muted-2)',
                         padding: '0.45rem 1.2rem',
                         fontSize: '0.62rem',
                         letterSpacing: '0.15em',

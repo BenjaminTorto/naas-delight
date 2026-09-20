@@ -1,4 +1,4 @@
-const PepperIcon = ({ filled, color = '#C9A84C' }) => (
+const PepperIcon = ({ filled, color = 'var(--gold)' }) => (
   <svg
     width="11"
     height="11"

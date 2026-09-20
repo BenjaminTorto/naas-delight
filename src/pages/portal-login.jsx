@@ -30,16 +30,16 @@ const AdminLogin = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(100px, 15vw, 140px) 1.25rem 4rem', position: 'relative', zIndex: 10 }}>
-      <div style={{ maxWidth: '400px', width: '100%', backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.15)', padding: 'clamp(1.75rem, 5vw, 2.5rem)', textAlign: 'center' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(100px, 15vw, 140px) 1.25rem 4rem', position: 'relative', zIndex: 10 }}>
+      <div style={{ maxWidth: '400px', width: '100%', backgroundColor: 'var(--bg-surface)', border: '1px solid rgba(201,168,76,0.15)', padding: 'clamp(1.75rem, 5vw, 2.5rem)', textAlign: 'center' }}>
         
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
           <KenteAccent width={20} />
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C9A84C' }}>Internal Access</span>
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--gold)' }}>Internal Access</span>
           <KenteAccent width={20} />
         </div>
 
-        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', fontWeight: 700, color: '#F0EAD6', marginBottom: '2rem' }}>
+        <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2rem', fontWeight: 700, color: 'var(--cream)', marginBottom: '2rem' }}>
           Admin Portal
         </h1>
 
@@ -51,31 +51,31 @@ const AdminLogin = () => {
 
         <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div style={{ textAlign: 'left' }}>
-            <label style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A7E6A', display: 'block', marginBottom: '0.5rem' }}>Email Address</label>
+            <label style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '0.5rem' }}>Email Address</label>
             <input 
               type="email" 
               required 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{ width: '100%', backgroundColor: '#171717', border: '1px solid rgba(201,168,76,0.1)', padding: '0.75rem', color: '#F0EAD6', fontSize: '0.85rem', outline: 'none' }}
+              style={{ width: '100%', backgroundColor: 'var(--bg-surface-3)', border: '1px solid rgba(201,168,76,0.1)', padding: '0.75rem', color: 'var(--cream)', fontSize: '0.85rem', outline: 'none' }}
             />
           </div>
 
           <div style={{ textAlign: 'left' }}>
-            <label style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8A7E6A', display: 'block', marginBottom: '0.5rem' }}>Password</label>
+            <label style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '0.5rem' }}>Password</label>
             <input 
               type="password" 
               required 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ width: '100%', backgroundColor: '#171717', border: '1px solid rgba(201,168,76,0.1)', padding: '0.75rem', color: '#F0EAD6', fontSize: '0.85rem', outline: 'none' }}
+              style={{ width: '100%', backgroundColor: 'var(--bg-surface-3)', border: '1px solid rgba(201,168,76,0.1)', padding: '0.75rem', color: 'var(--cream)', fontSize: '0.85rem', outline: 'none' }}
             />
           </div>
 
           <button 
             type="submit" 
             disabled={loading}
-            style={{ backgroundColor: '#C9A84C', color: '#0C0C0C', border: 'none', padding: '0.8rem', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', marginTop: '1rem', transition: 'all 0.2s ease' }}
+            style={{ backgroundColor: 'var(--gold)', color: 'var(--bg-page)', border: 'none', padding: '0.8rem', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer', marginTop: '1rem', transition: 'all 0.2s ease' }}
           >
             {loading ? 'Authenticating...' : 'Sign In'}
           </button>

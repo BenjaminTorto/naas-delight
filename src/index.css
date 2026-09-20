@@ -1,18 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,700&family=Caveat:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* Dark theme (default) */
   --gold: #C9A84C;
   --gold-light: #E2C06E;
-  --black: #0C0C0C;
-  --black-2: #111111;
-  --black-3: #171717;
-  --black-4: #1E1E1E;
+  --gold-dark: #8A6D2E;
+  --bg-page: #0C0C0C;
+  --bg-surface: #111111;
+  --bg-surface-alt: #1a1a1a;
+  --bg-surface-3: #171717;
+  --border-grid: #1E1E1E;
+  --border-subtle: #222222;
+  --border-subtle-2: #333333;
   --cream: #F0EAD6;
   --muted: #8A7E6A;
+  --muted-2: #5A5040;
+  --nav-bg-90: rgba(12,12,12,0.9);
+  --nav-bg-95: rgba(12,12,12,0.95);
+  --muted-40: rgba(138,126,106,0.4);
+  --cream-80: rgba(240,234,214,0.8);
+
+  /* Back-compat aliases used elsewhere in this file */
+  --black: var(--bg-page);
+  --black-2: var(--bg-surface);
+  --black-3: var(--bg-surface-3);
+  --black-4: var(--border-grid);
+}
+
+[data-theme="light"] {
+  --gold: #A9822E;
+  --gold-light: #C9A84C;
+  --gold-dark: #7A5F22;
+  --bg-page: #F7F3EA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #EFE9DC;
+  --bg-surface-3: #E9E1CE;
+  --border-grid: #E4DCC8;
+  --border-subtle: #DDD4BE;
+  --border-subtle-2: #CFC4A6;
+  --cream: #1A1610;
+  --muted: #6B6153;
+  --muted-2: #A79C89;
+  --nav-bg-90: rgba(247,243,234,0.9);
+  --nav-bg-95: rgba(247,243,234,0.95);
+  --muted-40: rgba(107,97,83,0.4);
+  --cream-80: rgba(26,22,16,0.8);
 }
 
 * {

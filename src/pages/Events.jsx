@@ -129,9 +129,9 @@ const Events = () => {
   };
 
   const inputStyle = {
-    backgroundColor: '#111',
-    border: '1px solid #222',
-    color: '#F0EAD6',
+    backgroundColor: 'var(--bg-surface)',
+    border: '1px solid var(--border-subtle)',
+    color: 'var(--cream)',
     padding: '1.1rem',
     borderRadius: '8px',
     width: '100%',
@@ -145,12 +145,12 @@ const Events = () => {
     fontSize: '0.65rem',
     letterSpacing: '0.1em',
     textTransform: 'uppercase',
-    color: '#C9A84C',
+    color: 'var(--gold)',
     marginBottom: '0.5rem',
   };
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(100px, 15vw, 130px)', paddingBottom: '4rem' }}>
+    <div style={{ backgroundColor: 'var(--bg-page)', color: 'var(--cream)', minHeight: '100vh', paddingTop: 'clamp(100px, 15vw, 130px)', paddingBottom: '4rem' }}>
       <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 clamp(1.25rem, 4vw, 2rem)' }}>
 
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -158,14 +158,14 @@ const Events = () => {
             <KenteAccent width={32} />
           </div>
           <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 3rem)', marginBottom: '1rem' }}>
-            Book For Your <em style={{ fontStyle: 'italic', color: '#C9A84C' }}>Special Event</em>
+            Book For Your <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Special Event</em>
           </h1>
-          <p style={{ color: '#8A7E6A', maxWidth: '460px', margin: '0 auto' }}>
+          <p style={{ color: 'var(--muted)', maxWidth: '460px', margin: '0 auto' }}>
             Planning a party, family gathering, or corporate lunch? Reserve fresh Ghanaian food in advance and we'll confirm availability with you on WhatsApp.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ backgroundColor: '#111', border: '1px solid #222', borderRadius: '12px', padding: 'clamp(1.5rem, 4vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <form onSubmit={handleSubmit} style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: 'clamp(1.5rem, 4vw, 2.5rem)', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
             <div>
@@ -220,11 +220,11 @@ const Events = () => {
 
           {error && <p style={{ fontSize: '0.8rem', color: '#E0A0A0', margin: 0 }}>{error}</p>}
           {!error && requestedTimeLabel && (
-            <p style={{ fontSize: '0.8rem', color: '#8A7E6A', margin: 0 }}>
-              Requested for <span style={{ color: '#C9A84C' }}>{requestedTimeLabel}</span>
+            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: 0 }}>
+              Requested for <span style={{ color: 'var(--gold)' }}>{requestedTimeLabel}</span>
             </p>
           )}
-          <p style={{ fontSize: '0.7rem', color: '#5A5040', margin: 0 }}>
+          <p style={{ fontSize: '0.7rem', color: 'var(--muted-2)', margin: 0 }}>
             Please book at least {MIN_LEAD_DAYS} days ahead. We're open Tue–Sun, 12PM–9PM, closed Mondays.
           </p>
 
@@ -254,8 +254,8 @@ const Events = () => {
             type="submit"
             disabled={isSubmitting || isIncomplete}
             style={{
-              backgroundColor: (isSubmitting || isIncomplete) ? '#8A7E6A' : '#C9A84C',
-              color: '#0C0C0C',
+              backgroundColor: (isSubmitting || isIncomplete) ? 'var(--muted)' : 'var(--gold)',
+              color: 'var(--bg-page)',
               padding: '1.2rem',
               fontWeight: 800,
               cursor: (isSubmitting || isIncomplete) ? 'not-allowed' : 'pointer',

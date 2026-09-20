@@ -13,7 +13,7 @@ const OrderTracker = ({ status }) => {
     return (
       <div style={{ border: '1px solid #8A2E2E', backgroundColor: 'rgba(138,46,46,0.08)', padding: '1.25rem', textAlign: 'center', marginBottom: '2rem' }}>
         <p style={{ color: '#E0A0A0', fontWeight: 700, letterSpacing: '0.03em', fontFamily: 'Archivo, sans-serif' }}>This order was cancelled</p>
-        <p style={{ color: '#8A7E6A', fontSize: '0.8rem', marginTop: '0.4rem' }}>If you think this is a mistake, please get in touch.</p>
+        <p style={{ color: 'var(--muted)', fontSize: '0.8rem', marginTop: '0.4rem' }}>If you think this is a mistake, please get in touch.</p>
       </div>
     );
   }
@@ -34,8 +34,8 @@ const OrderTracker = ({ status }) => {
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
-                    backgroundColor: done ? '#C9A84C' : '#1E1E1E',
-                    border: done ? '1px solid #C9A84C' : '1px solid #333',
+                    backgroundColor: done ? 'var(--gold)' : 'var(--border-grid)',
+                    border: done ? '1px solid var(--gold)' : '1px solid var(--border-subtle-2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -44,11 +44,11 @@ const OrderTracker = ({ status }) => {
                   }}
                 >
                   {done ? (
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0C0C0C" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--bg-page)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
                   ) : (
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#555' }} />
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: 'var(--muted-2)' }} />
                   )}
                 </div>
                 <span
@@ -56,7 +56,7 @@ const OrderTracker = ({ status }) => {
                     fontSize: '0.58rem',
                     letterSpacing: '0.04em',
                     textTransform: 'uppercase',
-                    color: done ? '#F0EAD6' : '#5A5040',
+                    color: done ? 'var(--cream)' : 'var(--muted-2)',
                     marginTop: '0.5rem',
                     textAlign: 'center',
                     lineHeight: 1.3,
@@ -70,7 +70,7 @@ const OrderTracker = ({ status }) => {
                   style={{
                     flex: 1,
                     height: '2px',
-                    backgroundColor: i < currentIndex ? '#C9A84C' : '#1E1E1E',
+                    backgroundColor: i < currentIndex ? 'var(--gold)' : 'var(--border-grid)',
                     margin: '11px 4px 0',
                     transition: 'background-color 0.4s ease',
                   }}

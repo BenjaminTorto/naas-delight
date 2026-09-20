@@ -48,21 +48,21 @@ const OrderConfirmation = () => {
 
   if (!order) return (
     <div style={msgStyle}>
-      <h2 style={{ color: '#C9A84C' }}>Order Not Found</h2>
-      <Link to="/menu" style={{ color: '#F0EAD6', marginTop: '1rem' }}>Back to Menu</Link>
+      <h2 style={{ color: 'var(--gold)' }}>Order Not Found</h2>
+      <Link to="/menu" style={{ color: 'var(--cream)', marginTop: '1rem' }}>Back to Menu</Link>
     </div>
   );
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 120px)', paddingLeft: '1.25rem', paddingRight: '1.25rem', textAlign: 'center' }}>
-      <div style={{ maxWidth: '600px', margin: '0 auto', padding: 'clamp(1.5rem, 5vw, 2rem)', backgroundColor: '#111', border: '1px solid #C9A84C' }}>
+    <div style={{ backgroundColor: 'var(--bg-page)', color: 'var(--cream)', minHeight: '100vh', paddingTop: 'clamp(90px, 15vw, 120px)', paddingLeft: '1.25rem', paddingRight: '1.25rem', textAlign: 'center' }}>
+      <div style={{ maxWidth: '600px', margin: '0 auto', padding: 'clamp(1.5rem, 5vw, 2rem)', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--gold)' }}>
         <h1 style={{ fontFamily: 'Archivo, sans-serif', fontWeight: 700, fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: '0.5rem' }}>
           {order.status === 'Completed' ? 'Order Picked Up' : order.status === 'Cancelled' ? 'Order Cancelled' : 'Order Confirmed!'}
         </h1>
-        <p style={{ color: '#8A7E6A', marginBottom: '0.5rem' }}>Order ID: {order.id.slice(0, 8)}</p>
+        <p style={{ color: 'var(--muted)', marginBottom: '0.5rem' }}>Order ID: {order.id.slice(0, 8)}</p>
         {order.scheduled_for && (
-          <p style={{ color: '#8A7E6A', marginBottom: '2rem' }}>
-            Requested for: <span style={{ color: '#C9A84C' }}>{order.scheduled_for}</span>
+          <p style={{ color: 'var(--muted)', marginBottom: '2rem' }}>
+            Requested for: <span style={{ color: 'var(--gold)' }}>{order.scheduled_for}</span>
           </p>
         )}
         {!order.scheduled_for && <div style={{ marginBottom: '1.5rem' }} />}
@@ -76,13 +76,13 @@ const OrderConfirmation = () => {
               <span>£{(item.price * item.quantity).toFixed(2)}</span>
             </div>
           ))}
-          <div style={{ borderTop: '1px solid #222', marginTop: '1rem', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', color: '#C9A84C', fontWeight: 'bold' }}>
+          <div style={{ borderTop: '1px solid var(--border-subtle)', marginTop: '1rem', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', color: 'var(--gold)', fontWeight: 'bold' }}>
             <span>Total</span>
             <span>£{order.total_price.toFixed(2)}</span>
           </div>
         </div>
 
-        <Link to="/track" style={{ backgroundColor: '#C9A84C', color: '#0C0C0C', padding: '1rem 2rem', textDecoration: 'none', fontWeight: 'bold' }}>
+        <Link to="/track" style={{ backgroundColor: 'var(--gold)', color: 'var(--bg-page)', padding: '1rem 2rem', textDecoration: 'none', fontWeight: 'bold' }}>
           TRACK ANOTHER ORDER
         </Link>
       </div>
@@ -90,6 +90,6 @@ const OrderConfirmation = () => {
   );
 };
 
-const msgStyle = { backgroundColor: '#0C0C0C', color: '#F0EAD6', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' };
+const msgStyle = { backgroundColor: 'var(--bg-page)', color: 'var(--cream)', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' };
 
 export default OrderConfirmation;

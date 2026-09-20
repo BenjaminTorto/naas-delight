@@ -12,6 +12,21 @@
     <meta name="apple-mobile-web-app-title" content="Naa's Delight" />
     
     <title>Naa's Delight Kitchen</title>
+
+    <script>
+      // Applied synchronously, before React mounts, so the page never
+      // flashes the wrong theme on load. Defaults to dark (the site's
+      // original, established look) unless the visitor has explicitly
+      // chosen light mode before.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
@@ -20,7 +35,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.worker.register('/sw.js').catch(err => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
             console.log('SW registration failed: ', err);
           });
         });

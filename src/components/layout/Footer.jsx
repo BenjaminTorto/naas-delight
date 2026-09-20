@@ -73,7 +73,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex items-center justify-between pt-6">
-          <span className="text-xs text-muted/40">
+          <span className="text-xs text-[var(--muted-40)]">
             2026 Naas Delight. All rights reserved.
           </span>
           <div className="w-12 h-px bg-gradient-to-r from-gold to-transparent" />

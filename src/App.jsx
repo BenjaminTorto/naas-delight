@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { CartProvider } from './context/CartContext';
+import { ThemeProvider } from './context/ThemeContext';
 import CartDrawer from './components/CartDrawer';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -53,15 +54,17 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <ScrollToTop />
-        <Navbar />
-        <CartDrawer /> 
-        <AnimatedRoutes />
-        <Footer />
-      </Router>
-    </CartProvider>
+    <ThemeProvider>
+      <CartProvider>
+        <Router>
+          <ScrollToTop />
+          <Navbar />
+          <CartDrawer /> 
+          <AnimatedRoutes />
+          <Footer />
+        </Router>
+      </CartProvider>
+    </ThemeProvider>
   );
 }
 

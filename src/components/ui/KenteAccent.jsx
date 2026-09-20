@@ -2,7 +2,7 @@
 // geometric weave of Ghanaian kente cloth, rendered in a single line
 // weight so it sits quietly alongside the site's existing hairline rules.
 // Used in place of the plain gold divider before section eyebrow labels.
-const KenteAccent = ({ width = 40, color = '#C9A84C', style = {} }) => {
+const KenteAccent = ({ width = 40, color = 'var(--gold)', style = {} }) => {
   const height = Math.round((width / 40) * 10);
   return (
     <svg

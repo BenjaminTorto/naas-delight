@@ -62,7 +62,7 @@ const CartDrawer = () => {
         width: '100%', 
         maxWidth: '480px', 
         height: '100%', 
-        backgroundColor: '#0C0C0C', 
+        backgroundColor: 'var(--bg-page)', 
         borderLeft: '1px solid rgba(201,168,76,0.2)',
         zIndex: 9999,
         transform: isCartOpen ? 'translateX(0)' : 'translateX(100%)',
@@ -72,14 +72,14 @@ const CartDrawer = () => {
         boxShadow: '-20px 0 50px rgba(0,0,0,0.5)'
       }}>
         
-        <div style={{ padding: '2.5rem 2rem', borderBottom: '1px solid #1A1A1A', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ padding: '2.5rem 2rem', borderBottom: '1px solid var(--bg-surface-alt)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.2rem', color: '#F0EAD6', fontWeight: 700 }}>Your Bag</h2>
-            <p style={{ color: '#C9A84C', fontSize: '0.65rem', letterSpacing: '0.2em', marginTop: '0.3rem' }}>{cart.length} ITEMS SELECTED</p>
+            <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.2rem', color: 'var(--cream)', fontWeight: 700 }}>Your Bag</h2>
+            <p style={{ color: 'var(--gold)', fontSize: '0.65rem', letterSpacing: '0.2em', marginTop: '0.3rem' }}>{cart.length} ITEMS SELECTED</p>
           </div>
           <button 
             onClick={() => setIsCartOpen(false)}
-            style={{ background: 'none', border: 'none', color: '#8A7E6A', cursor: 'pointer', fontSize: '0.75rem', letterSpacing: '0.15em' }}
+            style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', fontSize: '0.75rem', letterSpacing: '0.15em' }}
           >
             CLOSE ✕
           </button>
@@ -88,10 +88,10 @@ const CartDrawer = () => {
         <div style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
           {cart.length === 0 ? (
             <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-              <p style={{ color: '#8A7E6A', fontSize: '0.9rem', marginBottom: '2rem' }}>Your bag is currently empty.</p>
+              <p style={{ color: 'var(--muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Your bag is currently empty.</p>
               <button 
                 onClick={() => { setIsCartOpen(false); navigate('/menu'); }}
-                style={{ background: 'none', border: '1px solid #C9A84C', color: '#C9A84C', padding: '0.8rem 1.5rem', fontSize: '0.7rem', letterSpacing: '0.2em', cursor: 'pointer' }}
+                style={{ background: 'none', border: '1px solid var(--gold)', color: 'var(--gold)', padding: '0.8rem 1.5rem', fontSize: '0.7rem', letterSpacing: '0.2em', cursor: 'pointer' }}
               >
                 BROWSE MENU
               </button>
@@ -101,7 +101,7 @@ const CartDrawer = () => {
               const resolvedImage = item.image || assetMap[item.image_url];
               return (
                 <div key={item.id} style={{ display: 'flex', gap: '1.5rem', marginBottom: '2.5rem', alignItems: 'center' }}>
-                  <div style={{ width: '90px', height: '90px', backgroundColor: '#111', flexShrink: 0, overflow: 'hidden', border: '1px solid #1A1A1A' }}>
+                  <div style={{ width: '90px', height: '90px', backgroundColor: 'var(--bg-surface)', flexShrink: 0, overflow: 'hidden', border: '1px solid var(--bg-surface-alt)' }}>
                     <img 
                       src={resolvedImage} 
                       alt={item.name} 
@@ -110,12 +110,12 @@ const CartDrawer = () => {
                     />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <h4 style={{ color: '#F0EAD6', fontSize: '1.1rem', fontFamily: 'Archivo, sans-serif', margin: 0 }}>{item.name}</h4>
-                    <p style={{ color: '#8A7E6A', fontSize: '0.75rem', marginTop: '0.4rem' }}>{item.quantity} x £{Number(item.price).toFixed(2)}</p>
+                    <h4 style={{ color: 'var(--cream)', fontSize: '1.1rem', fontFamily: 'Archivo, sans-serif', margin: 0 }}>{item.name}</h4>
+                    <p style={{ color: 'var(--muted)', fontSize: '0.75rem', marginTop: '0.4rem' }}>{item.quantity} x £{Number(item.price).toFixed(2)}</p>
                   </div>
                   <button 
                     onClick={() => removeFromCart(item.id)}
-                    style={{ background: 'none', border: 'none', color: '#333', cursor: 'pointer', fontSize: '1.2rem' }}
+                    style={{ background: 'none', border: 'none', color: 'var(--border-subtle-2)', cursor: 'pointer', fontSize: '1.2rem' }}
                   >
                     ✕
                   </button>
@@ -126,17 +126,17 @@ const CartDrawer = () => {
         </div>
 
         {cart.length > 0 && (
-          <div style={{ padding: '2.5rem 2rem', backgroundColor: '#0F0F0F', borderTop: '1px solid #1A1A1A' }}>
+          <div style={{ padding: '2.5rem 2rem', backgroundColor: 'var(--bg-page)', borderTop: '1px solid var(--bg-surface-alt)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2.5rem', alignItems: 'flex-end' }}>
-              <span style={{ color: '#8A7E6A', fontSize: '0.7rem', letterSpacing: '0.2em' }}>SUBTOTAL</span>
-              <span style={{ color: '#C9A84C', fontSize: '2rem', fontFamily: 'Archivo, sans-serif' }}>£{cartTotal.toFixed(2)}</span>
+              <span style={{ color: 'var(--muted)', fontSize: '0.7rem', letterSpacing: '0.2em' }}>SUBTOTAL</span>
+              <span style={{ color: 'var(--gold)', fontSize: '2rem', fontFamily: 'Archivo, sans-serif' }}>£{cartTotal.toFixed(2)}</span>
             </div>
             <button 
               onClick={() => { setIsCartOpen(false); navigate('/checkout'); }}
               style={{ 
                 width: '100%', 
-                backgroundColor: '#C9A84C', 
-                color: '#0C0C0C', 
+                backgroundColor: 'var(--gold)', 
+                color: 'var(--bg-page)', 
                 padding: '1.3rem', 
                 border: 'none', 
                 fontWeight: 'bold', 

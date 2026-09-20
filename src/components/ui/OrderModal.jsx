@@ -17,22 +17,22 @@ const OrderModal = ({ isOpen, onClose, item }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/90" onClick={onClose} />
-      <div className="relative bg-[#111] border border-[#C9A84C]/20 w-full max-w-md p-8 text-[#F0EAD6]">
+      <div className="absolute inset-0 bg-[rgba(0,0,0,0.9)]" onClick={onClose} />
+      <div className="relative bg-[var(--bg-surface)] border border-[var(--gold)]/20 w-full max-w-md p-8 text-[var(--cream)]">
         <h2 className="font-serif text-2xl mb-4">{item.name}</h2>
         <p className="text-sm text-gray-400 mb-6">Price: £{item.price.toFixed(2)}</p>
         
         {step === 1 ? (
           <button 
             onClick={() => setStep(2)}
-            className="w-full bg-[#C9A84C] text-black py-3 uppercase tracking-widest text-xs font-bold"
+            className="w-full bg-[var(--gold)] text-black py-3 uppercase tracking-widest text-xs font-bold"
           >
             Next
           </button>
         ) : (
           <button 
             onClick={onClose}
-            className="w-full border border-[#C9A84C] text-[#C9A84C] py-3 uppercase tracking-widest text-xs font-bold"
+            className="w-full border border-[var(--gold)] text-[var(--gold)] py-3 uppercase tracking-widest text-xs font-bold"
           >
             Close
           </button>

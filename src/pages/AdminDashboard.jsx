@@ -87,19 +87,19 @@ const AdminDashboard = () => {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: '#C9A84C', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem' }}>Verifying Portal Access...</p>
+      <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <p style={{ color: 'var(--gold)', fontFamily: 'Archivo, sans-serif', fontSize: '1.5rem' }}>Verifying Portal Access...</p>
       </div>
     );
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#0C0C0C', color: '#F0EAD6', padding: 'clamp(100px, 15vw, 120px) clamp(1.25rem, 4vw, 2rem) 4rem' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-page)', color: 'var(--cream)', padding: 'clamp(100px, 15vw, 120px) clamp(1.25rem, 4vw, 2rem) 4rem' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', borderBottom: '1px solid rgba(201,168,76,0.15)', paddingBottom: '1.5rem', marginBottom: 'clamp(2rem, 5vw, 3rem)' }}>
           <div>
-            <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C' }}>Management Dashboard</span>
+            <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)' }}>Management Dashboard</span>
             <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: 700, marginTop: '0.25rem' }}>Naa's Delight HQ</h1>
           </div>
           <button 
@@ -111,21 +111,21 @@ const AdminDashboard = () => {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginBottom: 'clamp(2.5rem, 6vw, 4rem)' }}>
-          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Total Active Volume</p>
-            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>{stats.totalOrders}</p>
+          <div style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--muted)' }}>Total Active Volume</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: 'var(--gold)', marginTop: '0.5rem', fontWeight: 700 }}>{stats.totalOrders}</p>
           </div>
-          <div style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8A7E6A' }}>Gross Pipeline Revenue</p>
-            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: '#C9A84C', marginTop: '0.5rem', fontWeight: 700 }}>£{stats.totalRevenue.toFixed(2)}</p>
+          <div style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid rgba(201,168,76,0.08)', padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+            <p style={{ fontSize: '0.65rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--muted)' }}>Gross Pipeline Revenue</p>
+            <p style={{ fontFamily: 'Archivo, sans-serif', fontSize: 'clamp(2rem, 5vw, 3rem)', color: 'var(--gold)', marginTop: '0.5rem', fontWeight: 700 }}>£{stats.totalRevenue.toFixed(2)}</p>
           </div>
         </div>
 
         <div style={{ marginBottom: '4rem' }}>
-          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#C9A84C' }}>Active Inbound Orders</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--gold)' }}>Active Inbound Orders</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {orders.length === 0 ? (
-              <p style={{ color: '#8A7E6A', fontSize: '0.85rem', fontStyle: 'italic' }}>Waiting for fresh incoming orders...</p>
+              <p style={{ color: 'var(--muted)', fontSize: '0.85rem', fontStyle: 'italic' }}>Waiting for fresh incoming orders...</p>
             ) : (
               orders.map(order => {
                 // Defensive extraction to prevent empty string fallouts
@@ -140,33 +140,33 @@ const AdminDashboard = () => {
                 const totalCost = order.total_price ?? order.totalPrice ?? 0;
 
                 return (
-                  <div key={orderId} style={{ backgroundColor: '#111111', border: isEventBooking ? '1px solid rgba(201,168,76,0.4)' : '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={orderId} style={{ backgroundColor: 'var(--bg-surface)', border: isEventBooking ? '1px solid rgba(201,168,76,0.4)' : '1px solid rgba(201,168,76,0.08)', padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ minWidth: '200px' }}>
                       <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
                         {isEventBooking && (
-                          <span style={{ fontSize: '0.6rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#0C0C0C', backgroundColor: '#C9A84C', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
+                          <span style={{ fontSize: '0.6rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--bg-page)', backgroundColor: 'var(--gold)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
                             Event Booking
                           </span>
                         )}
-                        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#F0EAD6' }}>Order #{orderId}</span>
-                        {dateVal && <span style={{ fontSize: '0.7rem', color: '#8A7E6A' }}>{new Date(dateVal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--cream)' }}>Order #{orderId}</span>
+                        {dateVal && <span style={{ fontSize: '0.7rem', color: 'var(--muted)' }}>{new Date(dateVal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
                       </div>
-                      <p style={{ fontSize: '0.85rem', color: '#C9A84C', marginBottom: '0.25rem' }}>{summary}</p>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--gold)', marginBottom: '0.25rem' }}>{summary}</p>
                       {isEventBooking && order.items?.[0]?.menu_requests && (
-                        <p style={{ fontSize: '0.75rem', color: '#8A7E6A', marginBottom: '0.25rem' }}>Requests: {order.items[0].menu_requests}</p>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '0.25rem' }}>Requests: {order.items[0].menu_requests}</p>
                       )}
-                      <p style={{ fontSize: '0.75rem', color: '#8A7E6A' }}>Customer: {clientName} ({clientPhone})</p>
+                      <p style={{ fontSize: '0.75rem', color: 'var(--muted)' }}>Customer: {clientName} ({clientPhone})</p>
                       {order.scheduled_for && order.scheduled_for !== 'ASAP' && (
-                        <p style={{ fontSize: '0.75rem', color: '#E2C06E', marginTop: '0.25rem' }}>Requested for: {order.scheduled_for}</p>
+                        <p style={{ fontSize: '0.75rem', color: 'var(--gold-light)', marginTop: '0.25rem' }}>Requested for: {order.scheduled_for}</p>
                       )}
                     </div>
                     
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
-                      <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.3rem', color: '#F0EAD6' }}>£{Number(totalCost).toFixed(2)}</span>
+                      <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.3rem', color: 'var(--cream)' }}>£{Number(totalCost).toFixed(2)}</span>
                       <select 
                         value={order.status || 'Pending'} 
                         onChange={(e) => updateStatus(orderId, e.target.value)}
-                        style={{ backgroundColor: '#171717', color: '#F0EAD6', border: '1px solid rgba(201,168,76,0.2)', padding: '0.5rem 1rem', fontSize: '0.75rem', outline: 'none', cursor: 'pointer' }}
+                        style={{ backgroundColor: 'var(--bg-surface-3)', color: 'var(--cream)', border: '1px solid rgba(201,168,76,0.2)', padding: '0.5rem 1rem', fontSize: '0.75rem', outline: 'none', cursor: 'pointer' }}
                       >
                         <option value="Pending">⏱ Pending</option>
                         <option value="Preparing">🍳 Preparing</option>
@@ -183,14 +183,14 @@ const AdminDashboard = () => {
         </div>
 
         <div>
-          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: '#C9A84C' }}>Live Menu Inventory Control</h2>
+          <h2 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.8rem', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--gold)' }}>Live Menu Inventory Control</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {menuItems.map(item => (
-              <div key={item.id} style={{ backgroundColor: '#111111', border: '1px solid rgba(201,168,76,0.05)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div key={item.id} style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid rgba(201,168,76,0.05)', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                    <h3 style={{ fontSize: '1rem', fontFamily: 'Archivo, sans-serif', fontWeight: 400, color: '#F0EAD6' }}>{item.name}</h3>
-                    <span style={{ fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C' }}>{item.category}</span>
+                    <h3 style={{ fontSize: '1rem', fontFamily: 'Archivo, sans-serif', fontWeight: 400, color: 'var(--cream)' }}>{item.name}</h3>
+                    <span style={{ fontSize: '0.58rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)' }}>{item.category}</span>
                   </div>
                 </div>
 
@@ -203,15 +203,15 @@ const AdminDashboard = () => {
                           step="0.01"
                           value={newPrice} 
                           onChange={(e) => setNewPrice(e.target.value)}
-                          style={{ width: '65px', backgroundColor: '#171717', border: '1px solid #C9A84C', padding: '0.3rem', color: '#F0EAD6', fontSize: '0.8rem' }}
+                          style={{ width: '65px', backgroundColor: 'var(--bg-surface-3)', border: '1px solid var(--gold)', padding: '0.3rem', color: 'var(--cream)', fontSize: '0.8rem' }}
                         />
-                        <button onClick={() => updatePrice(item.id)} style={{ backgroundColor: '#C9A84C', border: 'none', color: '#0C0C0C', fontSize: '0.65rem', padding: '0 0.5rem', cursor: 'pointer', fontWeight: 600 }}>Save</button>
-                        <button onClick={() => setEditingId(null)} style={{ backgroundColor: 'transparent', border: 'none', color: '#8A7E6A', fontSize: '0.65rem', cursor: 'pointer' }}>X</button>
+                        <button onClick={() => updatePrice(item.id)} style={{ backgroundColor: 'var(--gold)', border: 'none', color: 'var(--bg-page)', fontSize: '0.65rem', padding: '0 0.5rem', cursor: 'pointer', fontWeight: 600 }}>Save</button>
+                        <button onClick={() => setEditingId(null)} style={{ backgroundColor: 'transparent', border: 'none', color: 'var(--muted)', fontSize: '0.65rem', cursor: 'pointer' }}>X</button>
                       </div>
                     ) : (
                       <div style={{ cursor: 'pointer' }} onClick={() => { setEditingId(item.id); setNewPrice(item.price); }}>
-                        <span style={{ fontSize: '0.85rem', color: '#8A7E6A' }}>Price: </span>
-                        <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.15rem', color: '#C9A84C' }}>£{Number(item.price).toFixed(2)}</span>
+                        <span style={{ fontSize: '0.85rem', color: 'var(--muted)' }}>Price: </span>
+                        <span style={{ fontFamily: 'Archivo, sans-serif', fontSize: '1.15rem', color: 'var(--gold)' }}>£{Number(item.price).toFixed(2)}</span>
                       </div>
                     )}
                   </div>

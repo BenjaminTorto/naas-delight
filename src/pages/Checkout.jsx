@@ -181,9 +181,9 @@ const Checkout = () => {
   };
 
   const inputStyle = {
-    backgroundColor: '#111',
-    border: '1px solid #222',
-    color: '#F0EAD6',
+    backgroundColor: 'var(--bg-surface)',
+    border: '1px solid var(--border-subtle)',
+    color: 'var(--cream)',
     padding: '1.2rem',
     borderRadius: '8px',
     width: '100%',
@@ -193,7 +193,7 @@ const Checkout = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#0C0C0C', color: '#F0EAD6', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}>
+    <div style={{ backgroundColor: 'var(--bg-page)', color: 'var(--cream)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '60px' }}>
       <div style={{ maxWidth: '500px', margin: '0 auto', padding: '0 1.5rem' }}>
 
         <h1 style={{ fontFamily: 'Archivo, sans-serif', fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'center' }}>
@@ -211,9 +211,9 @@ const Checkout = () => {
                 padding: '1rem',
                 borderRadius: '8px',
                 cursor: 'pointer',
-                border: serviceMethod === method ? '1px solid #C9A84C' : '1px solid #222',
+                border: serviceMethod === method ? '1px solid var(--gold)' : '1px solid var(--border-subtle)',
                 backgroundColor: serviceMethod === method ? 'rgba(201,168,76,0.1)' : 'transparent',
-                color: serviceMethod === method ? '#C9A84C' : '#8A7E6A',
+                color: serviceMethod === method ? 'var(--gold)' : 'var(--muted)',
                 textTransform: 'capitalize',
                 fontSize: '1rem',
               }}
@@ -237,9 +237,9 @@ const Checkout = () => {
                 padding: '1rem',
                 borderRadius: '8px',
                 cursor: 'pointer',
-                border: timing === key ? '1px solid #C9A84C' : '1px solid #222',
+                border: timing === key ? '1px solid var(--gold)' : '1px solid var(--border-subtle)',
                 backgroundColor: timing === key ? 'rgba(201,168,76,0.1)' : 'transparent',
-                color: timing === key ? '#C9A84C' : '#8A7E6A',
+                color: timing === key ? 'var(--gold)' : 'var(--muted)',
                 fontSize: '0.95rem',
               }}
             >
@@ -252,7 +252,7 @@ const Checkout = () => {
           <div style={{ marginBottom: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.5rem' }}>
                   Date
                 </label>
                 <input
@@ -265,7 +265,7 @@ const Checkout = () => {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '0.5rem' }}>
                   Time
                 </label>
                 <input
@@ -283,39 +283,39 @@ const Checkout = () => {
               <p style={{ fontSize: '0.8rem', color: '#E0A0A0' }}>{scheduleError}</p>
             )}
             {!scheduleError && schedDateStr && schedTimeStr && (
-              <p style={{ fontSize: '0.8rem', color: '#8A7E6A' }}>
-                Requested for <span style={{ color: '#C9A84C' }}>{requestedTimeLabel}</span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                Requested for <span style={{ color: 'var(--gold)' }}>{requestedTimeLabel}</span>
               </p>
             )}
-            <p style={{ fontSize: '0.7rem', color: '#5A5040' }}>
+            <p style={{ fontSize: '0.7rem', color: 'var(--muted-2)' }}>
               We're open Tue–Sun, 12PM–9PM. Closed Mondays.
             </p>
           </div>
         )}
 
-        <div style={{ backgroundColor: '#111', padding: '1.5rem', borderRadius: '12px', marginBottom: '2rem', border: '1px solid #222' }}>
+        <div style={{ backgroundColor: 'var(--bg-surface)', padding: '1.5rem', borderRadius: '12px', marginBottom: '2rem', border: '1px solid var(--border-subtle)' }}>
           {cart.length === 0 ? (
-            <p style={{ color: '#8A7E6A', textAlign: 'center' }}>Your bag is empty.</p>
+            <p style={{ color: 'var(--muted)', textAlign: 'center' }}>Your bag is empty.</p>
           ) : (
             <>
               {cart.map((item, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: '#8A7E6A', fontSize: '0.9rem' }}>
+                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: 'var(--muted)', fontSize: '0.9rem' }}>
                   <span>{item.quantity}x {item.name}</span>
                   <span>£{(item.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
-              <div style={{ borderTop: '1px solid #222', marginTop: '1rem', paddingTop: '1rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: '#8A7E6A' }}>
+              <div style={{ borderTop: '1px solid var(--border-subtle)', marginTop: '1rem', paddingTop: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: 'var(--muted)' }}>
                   <span>Subtotal</span>
                   <span>£{cartTotal.toFixed(2)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: '#8A7E6A' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: 'var(--muted)' }}>
                   <span>{serviceMethod === 'pickup' ? 'Pickup' : 'Delivery'}</span>
-                  <span style={{ color: '#C9A84C' }}>{deliveryFee === 0 ? 'FREE' : `£${deliveryFee.toFixed(2)}`}</span>
+                  <span style={{ color: 'var(--gold)' }}>{deliveryFee === 0 ? 'FREE' : `£${deliveryFee.toFixed(2)}`}</span>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', marginTop: '0.5rem' }}>
                   <span>Total</span>
-                  <span style={{ color: '#C9A84C', fontSize: '1.5rem' }}>£{finalTotal.toFixed(2)}</span>
+                  <span style={{ color: 'var(--gold)', fontSize: '1.5rem' }}>£{finalTotal.toFixed(2)}</span>
                 </div>
               </div>
             </>
@@ -334,9 +334,9 @@ const Checkout = () => {
           )}
 
           {serviceMethod === 'pickup' && (
-            <div style={{ padding: '1rem', backgroundColor: '#1a1a1a', borderRadius: '8px', border: '1px dashed #C9A84C', fontSize: '0.85rem' }}>
-              <p style={{ color: '#C9A84C', marginBottom: '0.4rem' }}>Collection Area:</p>
-              <p style={{ color: '#8A7E6A' }}>{PUBLIC_LOCATION}</p>
+            <div style={{ padding: '1rem', backgroundColor: 'var(--bg-surface-alt)', borderRadius: '8px', border: '1px dashed var(--gold)', fontSize: '0.85rem' }}>
+              <p style={{ color: 'var(--gold)', marginBottom: '0.4rem' }}>Collection Area:</p>
+              <p style={{ color: 'var(--muted)' }}>{PUBLIC_LOCATION}</p>
             </div>
           )}
 
@@ -352,8 +352,8 @@ const Checkout = () => {
             type="submit"
             disabled={isSubmitting || cart.length === 0 || isScheduleIncomplete}
             style={{
-              backgroundColor: (isSubmitting || isScheduleIncomplete) ? '#8A7E6A' : '#C9A84C',
-              color: '#0C0C0C',
+              backgroundColor: (isSubmitting || isScheduleIncomplete) ? 'var(--muted)' : 'var(--gold)',
+              color: 'var(--bg-page)',
               padding: '1.2rem',
               fontWeight: '800',
               cursor: (isSubmitting || cart.length === 0 || isScheduleIncomplete) ? 'not-allowed' : 'pointer',
